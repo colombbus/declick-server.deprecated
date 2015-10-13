@@ -1,0 +1,24 @@
+tangara_core_main:
+    resource: "@TangaraCoreBundle/Resources/config/routing.yml"
+    prefix:   /
+    
+tangara_core_project:
+    resource: "@TangaraCoreBundle/Resources/config/routing_project.yml"
+    prefix:   /project
+
+tangara_core_admin:
+    resource: "@TangaraCoreBundle/Resources/config/routing_admin.yml"
+    prefix:   /admin
+    
+tangara_core_assets:
+    resource: "@TangaraCoreBundle/Resources/config/routing_assets.yml"
+    prefix:   /assets
+    
+tangara_core_user:
+    resource: "@TangaraCoreBundle/Resources/config/routing_profile.yml"
+    prefix:   /
+
+tangara_core_exercise:
+    resource: "@TangaraCoreBundle/Resources/config/routing_exercise.yml"
+    prefix:   /exercise
+

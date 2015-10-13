@@ -1,0 +1,27 @@
+{% extends "::base.html.twig" %}
+{% block stylesheets %}
+    {% include "TangaraCoreBundle:Main:stylesheets.html.twig" %}
+{% endblock %}
+{% block javascripts %}
+    {% include 'TangaraCoreBundle:Main:javascript.html.twig' %}
+{% endblock %}
+{% block body %}
+    {% block navbar %}
+        {% include 'TangaraCoreBundle:Main:navbar.html.twig' %}
+    {% endblock %}
+
+    {% block content %}
+        {% if contentTemplate %}
+        <div id="content">
+            {% include contentTemplate %}
+        </div>
+        {% else %}
+        <div id="content" class="hide-at-startup">
+        </div>
+        {% endif %}
+    {% endblock %}
+    {# added 'onmousewheel="" to solve a bug in safari (see http://kb.tableausoftware.com/articles/issue/scroll-bars-in-embedded-views-do-not-work-in-safari) #}
+    <iframe id="help-frame" src="{{ tangaratutorial }}" frameborder="0" onmousewheel=""></iframe>
+    <iframe id="local-frame" src="{{ tangarajs }}" frameborder="0" scrolling="no" onmousewheel=""></iframe>
+
+{% endblock %}

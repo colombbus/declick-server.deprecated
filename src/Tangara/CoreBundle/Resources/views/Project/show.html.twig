@@ -1,0 +1,145 @@
+{% set public = project.getPublished()%}
+{% if project.getName() is empty %}
+    {% set projectName =  'project.default_name' | trans %}
+{% else %}
+    {% set projectName = project.getName() %}
+{% endif %}
+
+<div class="container">
+    {% include 'TangaraCoreBundle:Main:messages.html.twig' %}
+    <h2>{{ 'project.details'|trans }}{{projectName}}
+    {% if edition %}
+        <div class="pull-right">
+        {% if public %}
+            <small><span class="label label-primary">{{'project.public'|trans}}</span></small>
+        {% else %}
+            <small><span class="label label-default">{{'project.private'|trans}}</span></small>
+        {% endif %}
+        </div>
+    {% endif %}
+    </h2>
+    {% if public %}
+        <div class='panel panel-primary'>
+    {% else %}
+        <div class='panel panel-default'>
+    {% endif %}
+        <table class="data-display">
+            <tr>
+                <td class="data-title">
+                    {{ 'project.name'|trans }}
+                </td>
+                <td>
+                    {{projectName}}
+                </td>
+            </tr>
+            <tr>
+                <td class="data-title">
+                    {{ 'project.owner'|trans }}
+                </td>
+                <td>
+                    <a href="{{ path( "tangara_user_profile_show", {'user_id':project.getOwner().getId()}) }}" class="content-link" 
+                       {% if owner %}
+                           data-active="profile">
+                        {% else %}
+                           data-active="discover">
+                        {% endif %}
+                    {{project.getOwner().getUserName()}}
+                    </a>
+                </td>
+{% if edition %}
+            <tr>
+                <td class="data-title">
+                    {{ 'project.published'|trans }} 
+                </td>
+                <td>
+                    {% if project.getPublished() %} {{'project.published.yes'|trans}} {% else %} {{'project.published.no'|trans}} {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td class="data-title">
+                    {{ 'project.launcher'|trans }}
+                </td>
+                <td>
+                    {% set launcher = project.getLauncher() %}
+                    {% if launcher is empty %}
+                        <i>{{ 'project.no_launcher' | trans }}</i>
+                    {% else %}
+                        {{ launcher.getName() }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td class="data-title">
+                    {{ 'project.width'|trans }}
+                </td>
+                <td>
+                    {{ project.getWidth() }}
+                </td>
+            </tr>
+            <tr>
+                <td class="data-title">
+                    {{ 'project.height'|trans }}
+                </td>
+                <td>                    
+                    {{ project.getHeight() }}                    
+                </td>
+            </tr>
+{% endif %}
+{% if edition or project.getDescription() is not empty %}
+            <tr>
+                <td class="data-title">
+                    {{ 'project.description'|trans }}
+                </td>
+                <td>
+                    {{ project.getDescription() }}
+                </td>
+            </tr>
+{% endif %}
+{% if edition or project.getInstructions() is not empty %}
+            <tr>
+                <td class="data-title">
+                    {{ 'project.instructions'|trans }}
+                </td>
+                <td>
+                    {{ project.getInstructions() }}
+                </td>
+            </tr>
+{% endif %}
+{% if edition %}
+            <tr>
+                <td class="data-title">
+                    {{ 'project.created'|trans }}
+                </td>
+                <td>
+                    {{ project.getCreated()|date('d/m/Y')}}
+                </td>
+            </tr>
+{% endif %}
+{% if admin %}
+            <tr>
+                <td class="data-title">
+                    {{ 'project.readonly'|trans }}
+                </td>
+                <td>
+                    {% if project.getReadonly() %} {{'project.readonly.yes'|trans}} {% else %} {{'project.readonly.no'|trans}} {% endif %}
+                </td>
+            </tr>
+{% endif %}
+        </table>
+    </div>
+    {% if message is defined %}
+        <div class="well"> {{message|trans}}</div>
+    {% endif %}
+{% if edition %}
+    <a class="btn btn-default content-link" data-active='project' href="{{ path( "tangara_project_edit", {'projectId':project.getId()}) }}" >{{ 'project.edit'|trans }}</a>
+{% endif %}
+{% if selectable %}
+    <a class="btn btn-default content-link" data-active='create' href="{{ path( "tangara_project_select", {'projectId':project.getId()}) }}" >{{ 'project.select'|trans }}</a>
+{% endif %}
+    <a class="btn btn-default" href="{{ path( "tangara_project_execute", {'projectId':project.getId()}) }}" target="tangara_execution">{{ 'project.execute'|trans }}</a>
+</div>
+{% if updateUserMenu is defined %}
+    <script>
+        updateUserMenu(false, false, false);
+    </script>
+{% endif %}

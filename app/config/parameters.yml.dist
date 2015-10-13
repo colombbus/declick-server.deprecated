@@ -1,0 +1,25 @@
+parameters:
+    database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     tangaradb
+    database_user:     root
+    database_password: ~
+
+    mailer_transport:  smtp
+    mailer_host:       127.0.0.1
+    mailer_user:       ~
+    mailer_password:   ~
+    mailer_port: 465
+    mailer_encryption: ssl
+
+    locale:            en
+    secret:            ThisTokenIsNotSoSecretChangeIt
+    directory.upload: C:\Tangara
+    directory.tangarajs: tangara-client
+    directory.tutorial: tangara-tutorial/index.html
+    knp_paginator.page_range: 10
+
+twig:
+    globals:
+        custom_js: false

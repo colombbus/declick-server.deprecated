@@ -1,0 +1,60 @@
+services:
+    tangara_core.project_manager: 
+        class: Tangara\CoreBundle\Manager\ProjectManager
+        arguments: 
+            - @doctrine.orm.entity_manager
+            - %tangara_core.settings.directory.upload%
+            - @security.context
+            - @security.acl.provider
+            - @tangara_core.file_manager
+            - %tangara_core.settings.step_programs%
+            - %tangara_core.settings.step_resources%
+            - @tangara_core.log_manager
+    tangara_core.user_manager: 
+        class: Tangara\CoreBundle\Manager\UserManager
+        arguments: 
+            - @security.encoder_factory
+            - @fos_user.util.username_canonicalizer
+            - @fos_user.util.email_canonicalizer
+        arguments: ["@doctrine.orm.entity_manager"]
+    tangara_core.file_manager: 
+        class: Tangara\CoreBundle\Manager\FileManager
+        arguments: 
+            - @doctrine.orm.entity_manager
+            - %tangara_core.settings.allowed_mime_types%
+            - %tangara_core.settings.resource_max_size%
+    tangara_core.user_listener:
+        class: Tangara\CoreBundle\EventListener\UserListener
+        tags:
+            - {name: kernel.event_subscriber}
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @tangara_core.project_manager
+            - @session
+            - @router
+            - @security.authorization_checker
+    tangara_core.authentication_handler:
+        class: Tangara\CoreBundle\Handler\AuthenticationHandler
+        public: false
+        arguments:
+            - @router
+            - @session
+            - @templating
+            - @tangara_core.project_manager
+    tangara_core.form.type.project:
+        class: Tangara\CoreBundle\Form\Type\ProjectType
+        tags:
+            - { name: form.type, alias: project }
+        arguments:
+            - @tangara_core.project_manager
+            - @security.context
+    tangara_core.pagination:
+        class: Tangara\CoreBundle\Helper\Pagination
+        tags:
+            - { name: knp_paginator.injectable, paginator: knp_paginator }
+        arguments:
+            - @doctrine.orm.entity_manager
+    tangara_core.log_manager: 
+        class: Tangara\CoreBundle\Manager\LogManager
+        arguments: 
+            - @doctrine.orm.entity_manager
