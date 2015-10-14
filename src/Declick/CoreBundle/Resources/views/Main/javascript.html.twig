@@ -1,0 +1,35 @@
+<script src="{{ asset('bundles/declickcore/js/vendor/jquery-1.11.1.min.js') }}"></script>
+<script src="{{ asset('bundles/declickcore/js/vendor/bootstrap.min.js') }}"></script>
+<script src="{{ asset('bundles/declickcore/js/toggle-help.js') }}"></script>
+<script src="{{ asset('bundles/declickcore/js/main.js') }}"></script>
+<script>
+    // Initiate URLS
+    var url_create = "{{ url('declick_core_create') }}";
+    var url_info = "{{ url('declick_core_info') }}";
+    var url_user_menu = "{{ url('declick_core_user_menu') }}";
+    var url_create = "{{ declickCreate }}";
+    var url_learn = "{{ declickLearn }}";
+    
+    
+    // Current state info
+    var active_nav = "{{active}}";
+{% if contentUrl %}
+    var content_url = "{{contentUrl}}";
+{% else %}
+    var content_url = false;
+{% endif %}    
+    
+    // messages
+    var messageUnsaved = "{{'message.unsaved'|trans}}";
+
+    // check for unsaved programs when leaving Declick
+    window.onbeforeunload = function(e) {
+        if (document.getElementById('local-frame').contentWindow.isUnsaved()) {
+            var e = e || window.event;
+            if (e) {
+                e.returnValue = messageUnsaved;
+            }
+            return messageUnsaved;
+        }
+    };
+</script>

@@ -1,0 +1,25 @@
+declick_exercise_show:
+    path:  /show/{exerciseId}
+    defaults: { _controller: DeclickCoreBundle:Exercise:show, exerciseId: false }
+
+declick_exercise_edit:
+    path:  /edit/{exerciseId}
+    defaults: { _controller: DeclickCoreBundle:Exercise:edit, exerciseId: false }
+
+declick_exercise_select:
+    path:  /select/{exerciseId}
+    defaults: { _controller: DeclickCoreBundle:Exercise:select}
+    requirements:
+        exerciseId:  \d+
+
+declick_exercise_create:
+    path: /create
+    defaults: { _controller: DeclickCoreBundle:Exercise:create}
+
+declick_exercise_delete:
+    path:  /delete/{exerciseId}
+    defaults: { _controller: DeclickCoreBundle:Exercise:delete, exerciseId: false }
+
+declick_exercise_list:
+    path:  /list
+    defaults: { _controller: DeclickCoreBundle:Exercise:list}

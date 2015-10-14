@@ -1,0 +1,60 @@
+services:
+    declick_core.project_manager: 
+        class: Declick\CoreBundle\Manager\ProjectManager
+        arguments: 
+            - @doctrine.orm.entity_manager
+            - %declick_core.settings.directory.upload%
+            - @security.context
+            - @security.acl.provider
+            - @declick_core.file_manager
+            - %declick_core.settings.step_programs%
+            - %declick_core.settings.step_resources%
+            - @declick_core.log_manager
+    declick_core.user_manager: 
+        class: Declick\CoreBundle\Manager\UserManager
+        arguments: 
+            - @security.encoder_factory
+            - @fos_user.util.username_canonicalizer
+            - @fos_user.util.email_canonicalizer
+        arguments: ["@doctrine.orm.entity_manager"]
+    declick_core.file_manager: 
+        class: Declick\CoreBundle\Manager\FileManager
+        arguments: 
+            - @doctrine.orm.entity_manager
+            - %declick_core.settings.allowed_mime_types%
+            - %declick_core.settings.resource_max_size%
+    declick_core.user_listener:
+        class: Declick\CoreBundle\EventListener\UserListener
+        tags:
+            - {name: kernel.event_subscriber}
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @declick_core.project_manager
+            - @session
+            - @router
+            - @security.authorization_checker
+    declick_core.authentication_handler:
+        class: Declick\CoreBundle\Handler\AuthenticationHandler
+        public: false
+        arguments:
+            - @router
+            - @session
+            - @templating
+            - @declick_core.project_manager
+    declick_core.form.type.project:
+        class: Declick\CoreBundle\Form\Type\ProjectType
+        tags:
+            - { name: form.type, alias: project }
+        arguments:
+            - @declick_core.project_manager
+            - @security.context
+    declick_core.pagination:
+        class: Declick\CoreBundle\Helper\Pagination
+        tags:
+            - { name: knp_paginator.injectable, paginator: knp_paginator }
+        arguments:
+            - @doctrine.orm.entity_manager
+    declick_core.log_manager: 
+        class: Declick\CoreBundle\Manager\LogManager
+        arguments: 
+            - @doctrine.orm.entity_manager

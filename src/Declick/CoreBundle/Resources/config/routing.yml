@@ -1,0 +1,11 @@
+declick_core_homepage:
+    path:  /
+    defaults: { _controller: DeclickCoreBundle:Main:index }
+
+declick_core_info:
+    path:  /info
+    defaults: { _controller: DeclickCoreBundle:Main:info}
+    
+declick_core_create:
+    path:  /create
+    defaults: { _controller: DeclickCoreBundle:Main:create}

@@ -1,0 +1,10 @@
+declic_core_ajax:
+    path:  /ajax/
+    defaults: { _controller: DeclickCoreBundle:Debug:ajax }
+ 
+declick_core_ajax_set_project_id:
+    path:  /ajax/setprojectid/{project_id}
+    defaults: { _controller: DeclickCoreBundle:Debug:setProjectId }
+    requirements:
+        project_id:  \d+
+ 

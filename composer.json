@@ -1,14 +1,14 @@
 {
-    "name": "tangara/tangara-ui",
+    "name": "declick/declick-server",
     "license": "GPL v3.0",
     "type": "Symfony",
-    "description": "The tangaraUI project aims to provide a PHP interface build on the \"Symfony2 Framework\" for TangaraJS",
+    "description": "The Declick-server project aims to provide a PHP interface build on the \"Symfony2 Framework\" for Declick-client",
     "autoload": {
         "psr-0": {
             "": "src/"
         }
     },
-    "keywords": ["colombbus", "symfony", "educational IDE", "learn programming", "bundle", "tangara", "tangarajs"],
+    "keywords": ["colombbus", "symfony", "educational IDE", "learn programming", "bundle", "declick", "declick-client"],
     "license": "MIT",
     "authors": [
         {

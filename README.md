@@ -1,9 +1,9 @@
-Tangara-server
+Declick-server
 ==========
 
-A Symfony2's Framework web interface for [TangaraJS](https://github.com/colombbus/tangara-client)
+A Symfony2's Framework web interface for [Declick](https://github.com/colombbus/declick-client)
 
-Tangara-server adds support for the Tangara-client educational program.
+Declick-server adds support for the Declick-client educational program.
 It provides a flexible framework for user management that aims to handle
 common tasks such as user registration and password retrieval, project management
 
@@ -27,7 +27,7 @@ Documentation
 The bulk of the documentation is stored in the `Resources/doc/index.md`
 file in this bundle:
 
-[Read the Documentation for master](https://github.com/colombbus/tangara-server/blob/master/src/Tangara/Resources/doc/index.md)
+[Read the Documentation for master](https://github.com/colombbus/declick-server/blob/master/src/Declick/Resources/doc/index.md)
 
 Installation
 ------------
@@ -37,7 +37,7 @@ All the installation instructions are located in the documentation.
 Continuous Integration
 ------------
 
-TangaraUI is TestDriven developped with the [Travis](https://travis-ci.org/colombbus/tangara-server)
+Declick-server is TestDriven developped with the [Travis](https://travis-ci.org/colombbus/declick-server)
 tool.
 
 License
@@ -50,13 +50,13 @@ This bundle is under the GPL v3.0 license. See the complete license in the bundl
 About
 -----
 
-TangaraUI is a [Colombbus](http://www.colombbus.org) initiative.
-See also the list of [contributors](https://github.com/colombbus/tangara-server/contributors).
+Declick-server is a [Colombbus](http://www.colombbus.org) initiative.
+See also the list of [contributors](https://github.com/colombbus/declick-server/contributors).
 
 Reporting an issue or a feature request
 ---------------------------------------
 
-Issues and feature requests are tracked in the [Github issue tracker](https://github.com/colombbus/tangara-server/issues).
+Issues and feature requests are tracked in the [Github issue tracker](https://github.com/colombbus/declick-server/issues).
 
 When reporting a bug, it may be a good idea to reproduce it in a basic project
 built using the [Symfony Standard Edition](https://github.com/symfony/symfony-standard)

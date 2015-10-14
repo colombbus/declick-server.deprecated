@@ -25,10 +25,10 @@ security:
                 provider: fos_userbundle
                 csrf_provider: form.csrf_provider
                 use_referer:        true
-                success_handler: tangara_core.authentication_handler
-                failure_handler: tangara_core.authentication_handler
+                success_handler: declick_core.authentication_handler
+                failure_handler: declick_core.authentication_handler
             logout:
-                target: /tlogout
+                target: /dlogout
             anonymous:    true
         #dev:
         #    pattern:  ^/(_(profiler|wdt)|css|images|js)/

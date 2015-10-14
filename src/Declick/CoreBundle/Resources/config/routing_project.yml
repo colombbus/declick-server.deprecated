@@ -1,0 +1,34 @@
+#showAction: info about the user and the group projects  
+declick_project_show:
+    path:  /show/{projectId}
+    defaults: { _controller: DeclickCoreBundle:Project:show, projectId: false }        
+
+declick_project_list:
+    path:  /list
+    defaults: { _controller: DeclickCoreBundle:Project:list }
+
+declick_project_edit:
+    path:  /edit/{projectId}
+    defaults: { _controller: DeclickCoreBundle:Project:edit, projectId: false }
+
+declick_project_select:
+    path:  /select/{projectId}
+    defaults: { _controller: DeclickCoreBundle:Project:select}
+    requirements:
+        projectId:  \d+
+
+declick_project_create:
+    path: /create
+    defaults: { _controller: DeclickCoreBundle:Project:create}
+
+declick_project_published:
+    path:  /published
+    defaults: { _controller: DeclickCoreBundle:Project:published}
+
+declick_project_published_list:
+    path:  /getPublished
+    defaults: { _controller: DeclickCoreBundle:Project:getPublished}
+
+declick_project_execute:
+    path:  /execute/{projectId}
+    defaults: { _controller: DeclickCoreBundle:Project:execute, projectId: false}

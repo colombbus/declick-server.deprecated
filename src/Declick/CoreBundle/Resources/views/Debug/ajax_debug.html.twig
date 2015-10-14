@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <style>
+            button {
+                width:150px;
+                margin-top: 10px;
+            }
+            #title {
+                float:left;
+                position: relative;
+            }
+            #myDiv2 {
+                float:left;
+                position: relative;
+            }
+            input {
+                width: 50%;
+            }
+            .endurl{
+                width: 200px;
+            }
+            #myDiv{
+                width: 500px;
+                position: absolute;
+            }
+            .setProgramContent{
+                width: 100%;
+                height: 150px;
+                background-color: gray;
+            }
+            .error{
+                color: red;
+            }
+        </style>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+        <script>
+            function getUrl(balise) {
+                baseurl = $(".url").val();
+                endurl = $("#" + balise).val();
+                url = baseurl + endurl;
+                $("#" + balise).focus();
+                return url;
+            }
+            function getFile(balise) {
+                file = $("#" + balise + "Files").val();
+                return file;
+            }
+            function setProjectId()
+            {
+                var url = getUrl("setProjectId");
+
+                console.log(url);
+
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: url,
+                    error: function(msg) {
+                        $('#myDiv').append("<div class=\"error\">Error !: " + msg + "</div>");
+                    },
+                    success: function(data) {
+                        var items = [];
+                        $.each(data, function(key, val) {
+                            items.push("<li id='" + key + "'>" + val + "</li>");
+                        });
+
+                        $("<ul/>", {
+                            "class": "my-new-list",
+                            html: items.join("")
+                        }).appendTo("#myDiv");
+                        //affiche le contenu du fichier dans le conteneur dédié
+                        $('#myDiv').append(JSON.stringify(data));
+
+                    }});
+            }
+            function getPrograms()
+            {
+                var url = getUrl("getPrograms");
+
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: url,
+                    error: function(msg) {
+                        $('#myDiv').append("<div class=\"error\">Error !: " + msg + "</div>");
+                    },
+                    success: function(data) {
+                        var items = [];
+                        $.each(data, function(key, val) {
+                            items.push("<li id='" + key + "'>" + val + "</li>");
+                        });
+
+                        $("<ul/>", {
+                            "class": "my-new-list",
+                            html: items.join("")
+                        }).appendTo("#myDiv");
+                        //affiche le contenu du fichier dans le conteneur dédié
+                        $('#myDiv').append(JSON.stringify(data));
+
+                    }});
+            }
+            function getResources()
+            {
+                var url = getUrl("getResources");
+
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: url,
+                    error: function(msg) {
+                        $('#myDiv').append("<div class=\"error\">Error !: " + msg + "</div>");
+                    },
+                    success: function(data) {
+                        var items = [];
+                        $.each(data, function(key, val) {
+                            items.push("<li id='" + key + "'>" + val + "</li>");
+                        });
+
+                        $("<ul/>", {
+                            "class": "my-new-list",
+                            html: items.join("")
+                        }).appendTo("#myDiv");
+                        //affiche le contenu du fichier dans le conteneur dédié
+                        $('#myDiv').append(JSON.stringify(data));
+                    }});
+            }
+            function createProgram()
+            {
+                var url = getUrl("createProgram");
+                var file = getFile("createProgram");
+
+                $.post(url, {name: file}, function(data) {
+                    $('#myDiv').append("<ul><li>" + JSON.stringify(data) + "</li></ul>");
+                });
+            }
+            function createResource()
+            {
+                var url = getUrl("createResource");
+                var file = getFile("createResource");
+
+                $.post(url, {name: file}, function(data) {
+                    $('#myDiv').append("<ul><li>" + JSON.stringify(data) + "</li></ul>");
+                });
+            }
+            function setProgramContent()
+            {
+                var url = getUrl("setProgramContent");
+                var file = getFile("setProgramContent");
+                var content = $(".setProgramContent").val();
+                $.post(url, {name: file, code: content + " code", statements: content + " statements"}, function(data) {
+                    $('#myDiv').append("<ul><li>" + JSON.stringify(data) + "</li></ul>");
+                });
+            }
+
+            function getProgramCode()
+            {
+                var url = getUrl("getProgramCode");
+                var file = getFile("getProgramCode");
+                $.post(url, {name: file}, function(data) {
+                    $('#myDiv').append("<ul><li>" + JSON.stringify(data) + "</li></ul>");
+                });
+            }
+
+            function getProgramStatements()
+            {
+                var url = getUrl("getProgramStatements");
+                var file = getFile("getProgramStatements");
+                $.post(url, {name: file}, function(data) {
+                    $('#myDiv').append("<ul><li>" + JSON.stringify(data) + "</li></ul>");
+                });
+            }
+
+    
+            function getlocale()
+            {
+                var url = getUrl("getlocale");
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: url,
+                    error: function(msg) {
+                        $('#myDiv').append("<div class=\"error\">Error !: " + msg + "</div>");
+                    },
+                    success: function(data) {
+                        var items = [];
+                        $.each(data, function(key, val) {
+                            items.push("<li id='" + key + "'>" + val + "</li>");
+                        });
+                        $("<ul/>", {
+                            "class": "my-new-list",
+                            html: items.join("")
+                        }).appendTo("#myDiv");
+                        //affiche le contenu du fichier dans le conteneur d�di�
+                        //$('#contenu_fichier_ajax').html(data);
+                    }});
+            }
+            function clearDiv()
+            {
+                $('#myDiv').empty();
+            }
+
+            function removeProgram() {
+                var url = getUrl("removeProgram");
+                var file = getFile("removeProgram");
+                $.post(url, {name: file}, function(data) {
+                    $('#myDiv').append("<ul><li>" + JSON.stringify(data) + "</li></ul>");
+                }).fail(function(msg) {
+                    $('#myDiv').append("<div class=\"error\">Error !: " + msg + "</div>");
+                });
+            }
+            
+            function renameProgram() {
+                var url = getUrl("renameProgram");
+                var file1 = $("#renameProgramFile1").val();
+                var file2 = $("#renameProgramFile2").val();
+                $.post(url, {'name':file1, 'new':file2}, function(data) {
+                    $('#myDiv').append("<ul><li>" + JSON.stringify(data) + "</li></ul>");
+                }).fail(function(msg) {
+                    $('#myDiv').append("<div class=\"error\">Error !: " + msg + "</div>");
+                });                
+            }
+            
+        </script>
+        <title>Declick-server Ajax tests</title>
+    </head>
+    <body>
+        <input class="url" name="regis" value="http://localhost/declick-server/web/app_dev.php/"><br/>
+        <div id="title">
+            <h2>Actions for {{ app.user }}</h2>
+            <button type="button" onclick="setProjectId();">set Project Id</button>
+            <input class="endurl" name="zero" id="setProjectId" value="dev/ajax/setprojectid/1"/>
+            <br/>
+            <button type="button" onclick="getPrograms();">getPrograms</button>
+            <input class="endurl" name="un" id="getPrograms" value="assets/getprograms"/>
+            <input class="endurl" name="un" id="getProgramsFiles" value="no value" disabled/>
+            <br/>
+            <button type="button" onclick="getResources();">getResources</button>
+            <input class="endurl" name="quatre" id="getResources" value="assets/getresources"/>
+            <input class="endurl" name="quatre" id="getResourcesFiles" value="no value" disabled/>
+            <br/>
+            <button type="button" onclick="createProgram();">createProgram</button>
+            <input class="endurl" name="deux" id="createProgram" value="assets/createprogram"/>
+            <input class="endurl" name="deux" id="createProgramFiles" value="bob.tgr"/>
+            <br/>
+            <button type="button" onclick="createResource();">createResourec</button>
+            <input class="endurl" name="deux" id="createResource" value="assets/createresource"/>
+            <input class="endurl" name="deux" id="createResourceFiles" value="test.png"/>
+            <br/>
+            <button type="button" onclick="getProgramCode();">getProgramCode</button>
+            <input class="endurl" name="trois" id="getProgramCode" value="assets/getcode"/>
+            <input class="endurl" name="trois" id="getProgramCodeFiles" value="bob.tgr"/>
+            <br/>
+            <button type="button" onclick="getProgramStatements();">getProgramStatements</button>
+            <input class="endurl" name="trois" id="getProgramStatements" value="assets/getstatements"/>
+            <input class="endurl" name="trois" id="getProgramStatementsFiles" value="bob.tgr"/>
+            <br/>
+            <button type="button" onclick="setProgramContent();">setProgramContent</button>
+            <input class="endurl" name="neuf" id="setProgramContent" value="assets/setprogramcontent"/>
+            <input class="endurl" name="neuf" id="setProgramContentFiles"value="bob.tgr"/>
+            <br/>
+            <button type="button" onclick="getlocale();">getLocale</button>
+            <input class="endurl" name="six" id="getlocale" value="locale"/>
+            <input class="endurl" name="six" id="getlocaleFiles" value="no value" disabled/>
+            <br/>
+            <button type="button" onclick="removeProgram();">removeProgram</button>
+            <input class="endurl" name="huit" id="removeProgram" value="assets/removeprogram"/>
+            <input class="endurl" name="huit" id="removeProgramFiles" value="bob.tgr"/>
+            <br/>
+            <button type="button" onclick="removeResource();">removeResource</button>
+            <input class="endurl" name="huit" id="removeResource" value="assets/removeresource"/>
+            <input class="endurl" name="huit" id="removeResourceFiles" value="test.png"/>
+            <br/>
+            <button type="button" onclick="renameProgram();">renameProgram</button>
+            <input class="endurl" name="huit" id="renameProgram" value="assets/renameprogram"/>
+            <input class="endurl" name="huit" id="renameProgramFile1" value="bob.tgr"/>
+            <input class="endurl" name="huit" id="renameProgramFile2" value="new.tgr"/>
+            <br/>
+            <button type="button" onclick="clearDiv();">clearDiv</button>
+            <input class="endurl" name="sept" id="clearDiv" value="assets/getresources"/>
+            <input class="endurl" name="sept" id="clearDivFiles" value="no value" disabled/>
+            <br/>
+            <textarea class="setProgramContent" name="content">file content</textarea>
+        </div>
+
+        <div id="myDiv2">
+            <h2>Ajax Results</h2>
+            <div id="myDiv">
+                <h2>Let AJAX change this text</h2>
+            </div>
+        </div>
+    </body>
+</html>

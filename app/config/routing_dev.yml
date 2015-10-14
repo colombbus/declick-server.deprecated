@@ -13,6 +13,6 @@ _configurator:
 _main:
     resource: routing.yml
 
-_tangara_core_ajax:
-    resource: "@TangaraCoreBundle/Resources/config/routing_dev.yml"
+_declick_core_ajax:
+    resource: "@DeclickCoreBundle/Resources/config/routing_dev.yml"
     prefix:   /dev

@@ -33,7 +33,7 @@ class Version20150529175721 extends AbstractMigration
     
     public function postUp(Schema $schema) {
         // insert project class
-        $this->connection->insert("acl_classes", ['class_type'=>"Tangara\\CoreBundle\\Entity\\Project"]);
+        $this->connection->insert("acl_classes", ['class_type'=>"Declick\\CoreBundle\\Entity\\Project"]);
         $classId = $this->connection->lastInsertId();
         // scan users
         $result = $this->connection->query("SELECT username, home_id from users");
@@ -41,7 +41,7 @@ class Version20150529175721 extends AbstractMigration
             $hId = $row['home_id'];
             if (isset($hId)) {
                 // insert User object
-                $class = "Tangara\\CoreBundle\\Entity\\User-".$row['username'];
+                $class = "Declick\\CoreBundle\\Entity\\User-".$row['username'];
                 $this->connection->insert("acl_security_identities", ['identifier'=>$class, 'username'=>1]);
                 //$this->connection->query("INSERT INTO acl_security_identities (identifier, username) VALUES (\"$class\", 1);");
                 $securityId = $this->connection->lastInsertId();

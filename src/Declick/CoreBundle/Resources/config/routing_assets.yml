@@ -1,0 +1,63 @@
+declick_get_programs:
+    path:  /getprograms
+    defaults: { _controller: DeclickCoreBundle:Assets:getPrograms }
+
+declick_get_resources:            
+    path:  /getresources
+    defaults: { _controller: DeclickCoreBundle:Assets:getResources }
+
+declick_get_program_code:
+    path:  /getcode
+    defaults: { _controller: DeclickCoreBundle:Assets:getProgramCode }
+
+declick_get_program_statements:
+    path:  /getstatements
+    defaults: { _controller: DeclickCoreBundle:Assets:getProgramStatements }
+
+declick_set_program_content:
+    path:  /setprogramcontent
+    defaults: { _controller: DeclickCoreBundle:Assets:setProgramContent }
+
+declick_remove_program:
+    path:  /removeprogram
+    defaults: { _controller: DeclickCoreBundle:Assets:removeProgram }
+
+declick_remove_resource:
+    path:  /removeresource
+    defaults: { _controller: DeclickCoreBundle:Assets:removeResource }
+   
+declick_get_resource_1:
+    path:  /getresource/{projectId}/{version}/{name}
+    defaults: { _controller: DeclickCoreBundle:Assets:getResource }
+
+declick_get_resource_2:
+    path:  /getresource/{version}/{name}
+    defaults: { _controller: DeclickCoreBundle:Assets:getResource, projectId: false }
+
+declick_create_program:
+    path:  /createprogram
+    defaults: { _controller: DeclickCoreBundle:Assets:createProgram }
+
+declick_add_resource:
+    path:  /addresource
+    defaults: { _controller: DeclickCoreBundle:Assets:addResource }
+
+declick_rename_program:
+    path:  /renameprogram
+    defaults: { _controller: DeclickCoreBundle:Assets:renameProgram }
+
+declick_rename_resource:
+    path:  /renameresource
+    defaults: { _controller: DeclickCoreBundle:Assets:renameResource }
+
+declick_set_resource:
+    path:  /setresource
+    defaults: { _controller: DeclickCoreBundle:Assets:setResourceContent }
+
+declick_duplicate_resource:
+    path:  /duplicateresource
+    defaults: { _controller: DeclickCoreBundle:Assets:duplicateResource }
+
+declick_create_resource:
+    path:  /createresource
+    defaults: { _controller: DeclickCoreBundle:Assets:createResource }

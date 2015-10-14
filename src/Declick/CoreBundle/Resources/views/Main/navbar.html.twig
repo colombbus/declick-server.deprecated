@@ -1,0 +1,35 @@
+<div class="navbar navbar-fixed-top" id="navbar-declick" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div>
+      <a class="navbar-brand" id="logo" href="#">
+        <img class="logo" src="{{ asset('bundles/declickcore/img/declick.png')}}">DECLICK
+      </a>
+       <span class="program-state">beta</span>
+       </div>
+    </div>
+    <div class="navbar-collapse collapse" id="main-menu">
+        <ul class="nav navbar-nav" id="navigation-menu">
+            {% if active == 'create' %}
+                <li id="create" class='active'><a href="#">{{ 'navbar.create'|trans}}</a></li>
+            {% else %}
+                <li id="create"><a href="#">{{ 'navbar.create'|trans}}</a></li>
+            {% endif %}
+            {% if active == 'info' %}
+                <li id="info" class='active'><a href="#">{{ 'navbar.info'|trans}}</a></li>
+            {% else %}
+                <li id="info"><a href="#">{{ 'navbar.info'|trans}}</a></li>
+            {% endif %}
+        </ul>
+        <ul class="nav navbar-nav navbar-right" id="user-menu">
+            {% include "DeclickCoreBundle:User:menu.html.twig" %}
+        </ul>
+    </div><!--/.navbar-collapse -->
+  </div>
+</div>

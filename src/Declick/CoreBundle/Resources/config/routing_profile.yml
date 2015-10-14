@@ -1,0 +1,43 @@
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+declick_user_register:
+    path: /register
+    defaults: { _controller: DeclickCoreBundle:Profile:register }   
+
+declick_user_registration_confirmed:
+    path: /registration_confirmed
+    defaults: { _controller: DeclickCoreBundle:Profile:registrationConfirmed }   
+
+declick_user_change_password:
+    path: /change-password
+    defaults: { _controller: DeclickCoreBundle:Profile:changePassword}       
+
+declick_user_logout:
+    path: /dlogout
+    defaults: { _controller: DeclickCoreBundle:Profile:logout }
+    
+declick_user_profile_show:
+    path:  /profile/{user_id}
+    defaults: { _controller: DeclickCoreBundle:Profile:profile, user_id: false }
+
+declick_core_user_menu:
+    path:  /user_menu
+    defaults: { _controller: DeclickCoreBundle:Profile:menu }
+
+declick_user_forgotten_password:
+    path: /forgotten-password
+    defaults: { _controller: DeclickCoreBundle:Profile:forgotPassword}
+
+declick_user_password_reset_confirmed:
+    path: /reset_confirmed
+    defaults: { _controller: DeclickCoreBundle:Profile:resetPasswordConfirmed }   
+
+fos_user_resetting_reset:
+    path: /reset-password/{token}
+    defaults: { _controller: DeclickCoreBundle:Profile:resetPassword }
+    
+fos_user_resetting_check_email:
+    path: /check-email
+    defaults: { _controller: FOSUserBundle:Resetting:checkEmail }
+    

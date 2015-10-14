@@ -1,0 +1,28 @@
+#routing for AdminController
+declick_admin_index:
+    path:  /index
+    defaults: { _controller: DeclickCoreBundle:Admin:index }
+    
+declick_admin_users:
+    path:  /users
+    defaults: { _controller: DeclickCoreBundle:Admin:users}
+
+declick_admin_users_list:
+    path:  /get_users
+    defaults: { _controller: DeclickCoreBundle:Admin:getUsers}
+    
+declick_admin_projects:
+    path:  /projects
+    defaults: { _controller: DeclickCoreBundle:Admin:projects }
+
+declick_admin_projects_list:
+    path:  /get_projects
+    defaults: { _controller: DeclickCoreBundle:Admin:getProjects}
+
+declick_admin_exercises:
+    path:  /exercises
+    defaults: { _controller: DeclickCoreBundle:Admin:exercises }
+    
+declick_admin_exercises_list:
+    path:  /get_exercises
+    defaults: { _controller: DeclickCoreBundle:Admin:getExercises}

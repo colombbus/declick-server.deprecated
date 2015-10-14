@@ -1,9 +1,0 @@
-<script>
-    $(function() {
-    {% if updateUserMenu is defined %}
-        updateUserMenu(false, true, true);
-    {% endif %}
-        window.history.replaceState({active:'create'}, 'Tangara', url_create);
-        closeContent();
-    });
-</script>

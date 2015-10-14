@@ -1,0 +1,20 @@
+{% extends "::base.html.twig" %}
+{% block stylesheets %}
+    {% include "DeclickCoreBundle:Project:execution.stylesheets.html.twig" %}
+{% endblock %}
+{% block javascripts %}
+    {% include 'DeclickCoreBundle:Project:execution.javascript.html.twig' %}
+{% endblock %}
+{% block headers %}
+    <meta name="viewport" content="width={% if width is defined %}{{width}}{% else %}device-width{% endif %}, user-scalable=no">
+{% endblock %}
+
+{% block body %}
+{% if error is defined %}
+    <div class='error'>
+        {{error | trans}}
+    </div>
+{% endif %}
+    <iframe id="execution-frame" src="{{ client }}" frameborder="0" scrolling="no" onmousewheel="" 
+            style="{% if width is defined %}width:{{width}}px;{% else %}width:100%;{% endif %}{% if height is defined %}height:{{height}}px;{% else %}height:100%;{% endif %}"></iframe>
+{% endblock %}

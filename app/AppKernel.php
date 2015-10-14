@@ -19,13 +19,13 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),            
             
-            // Tangara Bundle dependencies
+            // Declick Bundle dependencies
             new FOS\UserBundle\FOSUserBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 	    new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             
-            // Tangara Bundles
-            new Tangara\CoreBundle\TangaraCoreBundle()
+            // Declick Bundles
+            new Declick\CoreBundle\DeclickCoreBundle()
             
         );
 

@@ -11,15 +11,13 @@ vendor/*
 */cache/*
 web/uploads/*
 web/bundles/*
-Tangara/*Bundle/Resources/translations/messages.*.yml
-Tangara/*Bundle/Resources/translations/messages.*.yml~
+Declick/*Bundle/Resources/translations/messages.*.yml
+Declick/*Bundle/Resources/translations/messages.*.yml~
 
 # Configuration files
 app/config/parameters.ini
 app/config/parameters.yml
 
-# Web
-web/app_dev.php
 
 # Composer
 /composer.phar
@@ -29,10 +27,9 @@ web/app_dev.php
 # Netbeans
 nbproject/*
 /update.sh
-/web/
 /bin/doctrine.bat
 /bin/doctrine.php.bat
-/src/Tangara/CoreBundle/Resources/translations/*.yml
+/src/Declick/CoreBundle/Resources/translations/*.yml
 
 /composer.lock
 /bin/*
