@@ -71,8 +71,10 @@ class UserListener implements EventSubscriberInterface {
     
     public function onUserLogin(AuthenticationEvent $event) {
         // No anonymous user
+        //die(var_dump($event->getAuthenticationToken()));
         $roles = $event->getAuthenticationToken()->getRoles();
         $anonymous = true;
+        //die(var_dump($roles));
         foreach ($roles as $role) {
             if ($role->getRole() === "ROLE_USER") {
                 $anonymous = false;

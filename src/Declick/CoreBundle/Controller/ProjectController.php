@@ -46,7 +46,7 @@ class ProjectController extends DeclickController {
         // Check user
         $params['edition'] = $manager->mayEdit($project);
         $params['owner'] = $manager->isOwner($project);
-        $params['admin'] = $this->get('security.context')->isGranted('ROLE_ADMIN');
+        $params['admin'] = $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN');
         $params['selectable'] = $manager->maySelect($project);
         
         if ($this->isUserLogged()){

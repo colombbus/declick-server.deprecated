@@ -9,8 +9,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class DeclickController extends Controller {
 
     protected function isUserLogged() {
-        $context = $this->container->get('security.context');
-        return $context->isGranted('IS_AUTHENTICATED_FULLY');
+        $checker = $this->container->get('security.authorization_checker');
+        return $checker->isGranted('IS_AUTHENTICATED_FULLY');
     }
     
     protected function getProject() {

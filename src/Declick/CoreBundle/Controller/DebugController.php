@@ -19,8 +19,8 @@ class DebugController extends Controller {
         $projectId = $session->set('projectid', $project_id);
         $jsonResponse = new JsonResponse();
         $jsonError = new JsonResponse();
-        $securityContext = $this->container->get('security.context');
-        if (!$securityContext->isGranted('IS_AUTHENTICATED_FULLY')) {
+        $checker = $this->get('security.authorization_checker');
+        if (!$checker->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $jsonError->setData(array('error' => 'user_not_logged'));
         }
         return $jsonResponse->setData(array('projectid' => $project_id));

@@ -58,7 +58,7 @@ class ProfileController extends DeclickController
             if (!$user) {
                 return $this->redirect($this->generateUrl( 'declick_core_homepage'));
             }
-            if ($user === $this->getUser() || $this->get('security.context')->isGranted('ROLE_ADMIN') ) {
+            if ($user === $this->getUser() || $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN') ) {
                 $edition = true;
             }
         }

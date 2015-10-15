@@ -38,7 +38,7 @@ class ExerciseController extends DeclickController {
         // Check user
         $params['edition'] = $manager->mayEdit($exercise);
         $params['owner'] = $manager->isOwner($exercise);
-        $params['admin'] = $this->get('security.context')->isGranted('ROLE_ADMIN');
+        $params['admin'] = $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN');
         $params['selectable'] = $manager->maySelect($exercise);
         $params['exerciseUrl'] = $this->getRequest()->getSchemeAndHttpHost()."/".$this->container->getParameter('declick_core.settings.directory.client')."/learn.html#".$exercise->getId();
         
@@ -52,7 +52,7 @@ class ExerciseController extends DeclickController {
     
     public function createAction(Request $request ){
         $manager = $this->get('declick_core.project_manager');
-        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('declick_core_homepage'));
         }
         $exercise = new Project();
@@ -160,7 +160,7 @@ class ExerciseController extends DeclickController {
     
     
     public function listAction() {
-        if (!$this->isUserLogged() || !$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (!$this->isUserLogged() || !$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             return $this->redirect($this->generateUrl('declick_core_homepage'));
         }
         $repository = $this->get('declick_core.project_manager')->getRepository();

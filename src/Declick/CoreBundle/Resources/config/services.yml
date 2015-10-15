@@ -4,7 +4,8 @@ services:
         arguments: 
             - @doctrine.orm.entity_manager
             - %declick_core.settings.directory.upload%
-            - @security.context
+            - @security.token_storage
+            - @security.authorization_checker
             - @security.acl.provider
             - @declick_core.file_manager
             - %declick_core.settings.step_programs%
@@ -47,7 +48,7 @@ services:
             - { name: form.type, alias: project }
         arguments:
             - @declick_core.project_manager
-            - @security.context
+            - @security.authorization_checker
     declick_core.pagination:
         class: Declick\CoreBundle\Helper\Pagination
         tags:

@@ -75,12 +75,10 @@ class AssetsController extends Controller {
         $env->projectId = $projectId;
         
         // Check user
-        $context = $this->container->get('security.context');
-        $user = $context->getToken()->getUser();
-        $env->user = $user;
+        $env->user = $this->get('security.token_storage')->getToken()->getUser();
         
         // Check if logged
-        $env->authenticated = $context->isGranted('IS_AUTHENTICATED_FULLY');
+        $env->authenticated = $this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY');
         
         // Check if project exists
         $project = $this->getDoctrine()

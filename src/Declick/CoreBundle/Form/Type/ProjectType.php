@@ -8,19 +8,19 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 use Declick\CoreBundle\Manager\ProjectManager;
 
 class ProjectType extends AbstractType
 {
     
     private $projectManager;
-    private $securityContext;
+    private $authorizationChecker;
     
-    public function __construct(ProjectManager $manager, SecurityContext $securityContext)
+    public function __construct(ProjectManager $manager, AuthorizationChecker $authorizationChecker)
     {
         $this->projectManager = $manager;
-        $this->securityContext = $securityContext;
+        $this->authorizationChecker = $authorizationChecker;
     }
     /**
      * @param FormBuilderInterface $builder
@@ -94,7 +94,7 @@ class ProjectType extends AbstractType
     }
         
     public function addReadonly(FormEvent $event) {
-        if ($this->securityContext->isGranted("ROLE_ADMIN")) {
+        if ($this->authorizationChecker->isGranted("ROLE_ADMIN")) {
             $project = $event->getData();
             $form = $event->getForm();
             $form->add('readonly', 'checkbox', array('label'=>'project.readonly', 'required'=>false));

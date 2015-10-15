@@ -28,7 +28,8 @@ namespace Declick\CoreBundle\Manager;
 use Doctrine\ORM\EntityManager;
 use Doctrine\Orm\NoResultException;
 use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 use Declick\CoreBundle\Entity\File;
 use Declick\CoreBundle\Entity\Log;
 use Declick\CoreBundle\Entity\Project;
@@ -45,7 +46,8 @@ class ProjectManager extends BaseManager {
     protected $em;
     protected $projectsDirectory;
     protected $user;
-    protected $context;
+    protected $tokenStorage;
+    protected $authorizationChecker;
     protected $acl;
     protected $fileManager;
     protected $exercisePrograms;
@@ -53,11 +55,12 @@ class ProjectManager extends BaseManager {
     protected $logManager;
     
     
-    public function __construct(EntityManager $em, $path, SecurityContext $context, $acl, $fm, $programs, $resources, $lm) {
+    public function __construct(EntityManager $em, $path, TokenStorage $tokenStorage, AuthorizationChecker $authorizationChecker, $acl, $fm, $programs, $resources, $lm) {
         $this->em = $em;
         $this->projectsDirectory = $path;
-        $this->context = $context;
-        $token = $context->getToken();
+        $this->tokenStorage = $tokenStorage;
+        $this->authorizationChecker = $authorizationChecker;
+        $token = $tokenStorage->getToken();
         if (isset($token)) {
             $this->user = $token->getUser();
         }
@@ -126,27 +129,27 @@ class ProjectManager extends BaseManager {
     }
 
     public function mayView(Project $project) {
-        return $this->context->isGranted('ROLE_ADMIN') || $this->context->isGranted('VIEW', $project) || $project->getReadOnly() || $project->getPublished();
+        return $this->authorizationChecker->isGranted('ROLE_ADMIN') || $this->authorizationChecker->isGranted('VIEW', $project) || $project->getReadOnly() || $project->getPublished();
     }
     
     public function mayExecute(Project $project) {
-        return $this->context->isGranted('ROLE_ADMIN') || $this->context->isGranted('VIEW', $project) || $project->getReadOnly() || $project->getPublished() || $project->getExercise();
+        return $this->authorizationChecker->isGranted('ROLE_ADMIN') || $this->authorizationChecker->isGranted('VIEW', $project) || $project->getReadOnly() || $project->getPublished() || $project->getExercise();
     }
     
     public function maySelect(Project $project) {
-        return $this->context->isGranted('ROLE_ADMIN') || $this->context->isGranted('CREATE', $project) || $project->getReadOnly();
+        return $this->authorizationChecker->isGranted('ROLE_ADMIN') || $this->authorizationChecker->isGranted('CREATE', $project) || $project->getReadOnly();
     }
     
     public function mayContribute(Project $project) {
-        return $this->context->isGranted('ROLE_ADMIN') || $this->context->isGranted('CREATE', $project);
+        return $this->authorizationChecker->isGranted('ROLE_ADMIN') || $this->authorizationChecker->isGranted('CREATE', $project);
     }
 
     public function mayEdit(Project $project) {
-        return $this->context->isGranted('ROLE_ADMIN') || $this->context->isGranted('EDIT', $project);
+        return $this->authorizationChecker->isGranted('ROLE_ADMIN') || $this->authorizationChecker->isGranted('EDIT', $project);
     }
     
     public function isOwner(Project $project) {
-        return $this->context->isGranted('OWNER', $project);
+        return $this->authorizationChecker->isGranted('OWNER', $project);
     }
     
     public function isHomeProject(Project $project, User $user) {
