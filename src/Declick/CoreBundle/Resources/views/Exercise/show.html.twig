@@ -37,7 +37,7 @@
         <div class="well"> {{message|trans}}</div>
     {% endif %}
 {% if edition %}
-    <a class="btn btn-default content-link" data-active='profile' href="{{ path( "tangara_exercise_edit", {'exerciseId':exercise.getId()}) }}" >{{ 'exercise.edit'|trans }}</a>
+    <a class="btn btn-default content-link" data-active='profile' href="{{ path( "declick_exercise_edit", {'exerciseId':exercise.getId()}) }}" >{{ 'exercise.edit'|trans }}</a>
     <a class="btn btn-default" data-active='profile' href="{{ exerciseUrl }}" target="learn">{{ 'exercise.test'|trans }}</a>
     <a class="btn btn-default content-link" data-active='create' href="{{ path( "declick_exercise_select", {'exerciseId':exercise.getId()}) }}" >{{ 'exercise.select'|trans }}</a>
     <a id="exercise_delete" class="btn btn-default" data-active='profile' href="{{ path( "declick_exercise_delete", {'exerciseId':exercise.getId()}) }}" >{{ 'exercise.delete'|trans }}</a>
