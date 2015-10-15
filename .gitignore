@@ -29,7 +29,6 @@ nbproject/*
 /update.sh
 /bin/doctrine.bat
 /bin/doctrine.php.bat
-/src/Declick/CoreBundle/Resources/translations/*.yml
 
 /composer.lock
 /bin/*
