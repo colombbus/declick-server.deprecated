@@ -12,7 +12,6 @@ vendor/*
 web/uploads/*
 web/bundles/*
 web/fonts/*
-Declick/*Bundle/Resources/translations/messages.*.yml
 Declick/*Bundle/Resources/translations/messages.*.yml~
 
 # Configuration files
