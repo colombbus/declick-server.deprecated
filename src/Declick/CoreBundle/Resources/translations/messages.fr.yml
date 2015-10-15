@@ -1,0 +1,137 @@
+Previous: Precedent
+Next: Suivant
+search: Rechercher
+navbar.home: Accueil
+navbar.create: Créer
+navbar.share: Partager
+navbar.learn: Apprendre
+navbar.logout: Déconnecter
+navbar.register: Inscription
+navbar.profile: Profil
+navbar.account: 'Compte utilisateur'
+navbar.admin: Administration
+navbar.projects: Projets
+navbar.project_info: Informations
+navbar.exercises: Exercices
+navbar.forgotten_password: 'Mot de passe oublié ?'
+navbar.info: Informations
+homepage.Welcome: 'Bienvenue sur le site de Declick'
+homepage.site_description: 'Le site officiel de Declick fonctionnant sur Android, PC (Win/Linux/Mac), iPhone, FirefoxOS, BlackBerry.'
+homepage.more: Plus
+homepage.project_description: 'Description du projet'
+homepage.news: Actualités
+homepage.news_description: 'Participez à la restitution des ateliers Declick !'
+homepage.go_actu: Plus
+homepage.shared_projects: 'Projets partagés'
+homepage.view_details: Détails
+homepage.start: 'Pour bien commencer'
+homepage.start_description: 'Vous voulez vous y mettre et vous ne savez pas par où commencer ? Les tutoriels vont vous guider.'
+homepage.view_tutorials: 'Voir les tutoriels'
+homepage.tangara_v1: 'Et Tangara v1 ?'
+homepage.tangara_v1_description: 'Vous cherchez la version précédente de Tangara ?'
+homepage.go_declick_v1: 'Elle accessible ici'
+homepage.slide0_title: 'Bienvenue sur Declick'
+homepage.slide0_content: 'La plateforme de développement libre  accessible sur ordinateurs, tablettes, smartphones.'
+homepage.slide1_title: 'Apprendre à coder'
+homepage.slide1_content: 'Apprends la programmation informatique grâce à un environnement Declick ludique et intuitif.'
+homepage.slide2_title: 'Pour les jeunes'
+homepage.slide2_content: 'Avec Declick, tu peux apprendre à coder dès 11 ans.'
+homepage.slide3_title: 'Créer son propre programme'
+homepage.slide3_content: 'Tu peux créer ton jeu vidéo (scénario, graphisme, code).'
+homepage.slide4_title: 'La communauté Declick'
+homepage.slide4_content: 'Sur Declick tu peux partager, échanger et travailler à plusieurs sur un même projet.'
+homepage.slide5_title: 'Participer au financement de Declick'
+homepage.slide5_content_1: 'Tu peux aider Declick à se développer en'
+homepage.slide5_content_2: 'participant au financement ici.'
+login.username: Utilisateur
+login.password: 'Mot de passe'
+profile.title: Profil
+profile.management: 'Gestion du compte'
+profile.username: 'Nom d''utilisateur'
+profile.email: 'Adresse e-mail'
+profile.delete: 'Supprimer le compte'
+profile.changePassword: 'Changer le mot de passe'
+profile.change_password: 'Modification du mot de passe'
+profile.registration_title: Inscription
+profile.registration_confirmed_title: 'Compte créé'
+profile.registration_confirmed: 'Félicitations %username%, votre compte est maintenant activé !'
+profile.forgotten_password: 'Mot de passe oublié'
+profile.resetting_email_sent: 'E-mail envoyé'
+profile.resetting_check_email: 'Un e-mail a été envoyé à l''adresse %email%. Il contient un lien sur lequel il vous faudra cliquer afin de réinitialiser votre mot de passe.'
+profile.resetting_password_already_requested: 'Un nouveau mot de passe a déjà été demandé pour cet utilisateur dans les dernières 24 heures.'
+profile.reset_password: 'Réinitialisation du mot de passe'
+profile.resetting_email.subject: 'Réinitialisation de votre mot de passe'
+profile.resetting_email.message: "Bonjour %username% !\n\nPour réinitialiser votre mot de passe, merci de vous rendre sur %confirmationUrl%\n\nA bientôt,\nL'équipe Declick"
+project.details: 'Projet > '
+project.edition: 'Modification du projet'
+project.edit: 'Modifier le projet'
+project.new: 'Créer un nouveau projet'
+project.created: 'Date de création'
+project.width: 'Largeur de la fenêtre (pixels)'
+project.height: 'Hauteur de la fenêtre (pixels)'
+project.description: Description
+project.instructions: Instructions
+project.published: 'Visible par tous'
+project.published.yes: Oui
+project.published.no: Non
+project.save: Enregistrer
+project.cancel: Annuler
+project.no_name: 'aucun nom'
+project.default_name: 'Mon projet'
+project.public: Public
+project.private: Privé
+project.home_project: 'Ce projet est le projet par défaut, il ne peut pas être supprimé'
+project.launcher: 'Programme principal'
+project.no_launcher: aucun
+project.launcher_not_set: 'Aucun programme principal défini'
+project.edited: 'Projet mis à jour'
+project.published_projects: 'Projets publiés'
+project.see_published_projects: 'Voir la liste des projets publiés'
+project.published_projects_description: 'Découvrez ici les projets qui ont été publiés par les développeurs Declick !'
+project.published_projects_access: 'Voir les projets publiés'
+project.no_published_projects: 'Aucun projet publié encore !'
+project.owner: Responsable
+project.execute: Exécuter
+project.readonly: 'Projet en lecture seule'
+project.readonly.yes: Oui
+project.readonly.no: Non
+project.projects: 'Tous les projets'
+project.own_projects: 'Mes projets'
+project.readonly_projects: 'Projets consultables'
+project.select: 'Travailler sur ce projet'
+project.name: 'Nom du projet'
+project.creation: 'Nouveau projet'
+message.unsaved: 'Vous avez des programmes non enregistrés : les modifications seront perdues.\nEtes-vous sûr de vouloir poursuivre ?'
+admin.title: Administration
+admin.users: Utilisateurs
+admin.projects: Projets
+admin.project: 'Nom du projet'
+admin.owner: Propriétaire
+admin.project_datetime: 'Date de creation'
+admin.ajax_error: 'Une erreur s''est produite. Veuillez réessayer ultérieurement.'
+admin.exercises: Exercices
+admin.exercise: Exercice
+admin.exercise_datetime: 'Date de creation'
+exercise.details: 'Exercice > '
+exercise.creation: 'Nouvel exercice'
+exercise.name: 'Nom de l''exercice'
+exercise.title: 'Titre du parcours'
+exercise.description: Description
+exercise.save: Enregistrer
+exercise.cancel: Annuler
+exercise.edit: Modifier
+exercise.delete: Supprimer
+exercise.select: 'Travailler sur cet exercice'
+exercise.execute: Lancer
+exercise.edited: 'Exercice mis à jour'
+exercise.edition: 'Modification du l''exercice'
+exercise.deletion_confirm: 'Êtes-vous sûr de vouloir supprimer l''exercice ?'
+exercise.deleted: 'Exercice supprimé'
+exercise.test: 'Tester l''exercice'
+exercise.exercises: Exercices
+exercise.own_exercises: 'Mes exercices'
+exercise.all_exercises: 'Tous les exercices'
+exercise.see_all_exercises: 'Voir tous les exercices'
+exercise.url: 'URL de l''exercice'
+admin.auto-project: __admin.auto-project
+registration.back: __registration.back
