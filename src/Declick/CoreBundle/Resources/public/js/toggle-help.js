@@ -7,14 +7,14 @@ function openHelp() {
                   'left': '0'
                   }, 200);
     $localFrame.stop().animate({
-            'padding-left': '265px'
+            'padding-left': '365px'
             },200);
     helpVisible = true;
 }
 
 function closeHelp() {
     $helpFrame.stop().animate({
-            left: '-265px'
+            left: '-365px'
             }, 200, function(){$('#help-frame').hide();});
     $localFrame.animate({
             'padding-left': '0px'
