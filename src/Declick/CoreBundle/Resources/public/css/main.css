@@ -262,13 +262,13 @@ footer {
     background-color: #6DBEA9;
     height: 500px;
     margin-top : 40px;*/
-    width:265px;
+    width:365px;
     height:100%;
     box-sizing:border-box;
     padding-top:40px;
     position:absolute;
     top:0;
-    left:-265px;
+    left:-365px;
     z-index:100;
     overflow-x: hidden;
     overflow-y: scroll;
