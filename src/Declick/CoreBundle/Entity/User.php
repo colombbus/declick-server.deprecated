@@ -3,12 +3,36 @@ namespace Declick\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
-
+use Doctrine\ORM\Mapping\AttributeOverrides;
+use Doctrine\ORM\Mapping\AttributeOverride;
 
 /**
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="Declick\CoreBundle\Entity\UserRepository")
  * @ORM\Table(name="users")
+ * 
+ * @AttributeOverrides({
+ *     @AttributeOverride(name="emailCanonical",
+ *         column=@ORM\Column(
+ *             name="emailCanonical",
+ *             type="string",
+ *             length=255,
+ *             unique=false,
+ *             nullable=true
+ *         )
+ *     ),
+ *     @AttributeOverride(name="email",
+ *         column=@ORM\Column(
+ *             name="email",
+ *             type="string",
+ *             length=255,
+ *             nullable=true
+ *         )
+ *     )
+
+ * })
+ * 
+ * 
  */
 class User extends BaseUser
 {
@@ -20,6 +44,14 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * @var integer
+     * 
+     * @ORM\Column(type="bigint", nullable=true, unique=true)
+     */
+    protected $externalId;
+
     
     /**
      * @ORM\OneToOne(targetEntity="Project")
@@ -89,5 +121,29 @@ class User extends BaseUser
     public function getPolling()
     {
         return $this->polling;
+    }
+
+    /**
+     * Set externalId
+     *
+     * @param integer $externalId
+     *
+     * @return User
+     */
+    public function setExternalId($externalId)
+    {
+        $this->externalId = $externalId;
+
+        return $this;
+    }
+
+    /**
+     * Get externalId
+     *
+     * @return integer
+     */
+    public function getExternalId()
+    {
+        return $this->externalId;
     }
 }

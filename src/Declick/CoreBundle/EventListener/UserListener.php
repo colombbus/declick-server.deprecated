@@ -11,9 +11,11 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Router;
-use Symfony\Component\Security\Core\AuthenticationEvents;
+/*use Symfony\Component\Security\Core\AuthenticationEvents;*/
+use Symfony\Component\Security\Http\SecurityEvents;
 use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
-use Symfony\Component\Security\Core\Event\AuthenticationEvent;
+/*use Symfony\Component\Security\Core\Event\AuthenticationEvent;*/
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Declick\CoreBundle\Entity\Project;
 use Declick\CoreBundle\Manager\ProjectManager;
 
@@ -36,7 +38,8 @@ class UserListener implements EventSubscriberInterface {
     public static function getSubscribedEvents() {
         return array(
         FOSUserEvents::REGISTRATION_COMPLETED => 'onUserCreation',
-        AuthenticationEvents::AUTHENTICATION_SUCCESS => 'onUserLogin',
+        SecurityEvents::INTERACTIVE_LOGIN => 'onUserLogin',
+        /*AuthenticationEvents::AUTHENTICATION_SUCCESS => 'onUserLogin',*/
         FOSUserEvents::REGISTRATION_SUCCESS => 'onRegistrationSuccess',
         FOSUserEvents::CHANGE_PASSWORD_SUCCESS => 'onChangePasswordSuccess',
         FOSUserEvents::RESETTING_RESET_SUCCESS => 'onResettingPasswordSuccess',
@@ -69,7 +72,7 @@ class UserListener implements EventSubscriberInterface {
         $event->setResponse(new RedirectResponse($url));
     }
     
-    public function onUserLogin(AuthenticationEvent $event) {
+    public function onUserLogin(InteractiveLoginEvent $event) {
         // No anonymous user
         //die(var_dump($event->getAuthenticationToken()));
         $roles = $event->getAuthenticationToken()->getRoles();

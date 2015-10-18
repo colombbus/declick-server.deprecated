@@ -2,6 +2,7 @@
 namespace Declick\CoreBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\NoResultException;
 
 class UserRepository extends EntityRepository {
     
@@ -13,4 +14,15 @@ class UserRepository extends EntityRepository {
         return $qb->getQuery();
     }
     
+    public function findUserByExternalId($externalId) {
+        $query = $this->createQueryBuilder('u')
+                ->where('u.externalId = :id')
+                ->setParameter('id', $externalId);
+        try {
+            $user = $query->getQuery()->getSingleResult();
+            return $user;
+        } catch (NoResultException $e) {
+            return false;
+        }
+    } 
 }
