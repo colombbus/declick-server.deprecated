@@ -132,6 +132,7 @@ parameters:
               type: "text"
             - name: "lesson.html"
               type: "text"
+    declick_core.settings.public_key: %public_key%
     
 stof_doctrine_extensions:
     default_locale: fr_FR

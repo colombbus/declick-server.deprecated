@@ -20,6 +20,8 @@ parameters:
     directory.tutorial: declick-tutorial/index.html
     knp_paginator.page_range: 10
 
+    public_key: /path/to/key.pub
+
 twig:
     globals:
         custom_js: false
