@@ -59,3 +59,7 @@ services:
         class: Declick\CoreBundle\Manager\LogManager
         arguments: 
             - @doctrine.orm.entity_manager
+    declick_core.token_parser:
+        class: Declick\CoreBundle\Helper\TokenParser
+        arguments:
+            - %declick_core.settings.public_key%
