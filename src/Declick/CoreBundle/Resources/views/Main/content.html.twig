@@ -1,0 +1,18 @@
+<div class="container">
+    <h2>
+        {% block title %}{% endblock %}
+        <div class="close-content"></div>
+   </h2>
+    {% include 'DeclickCoreBundle:Main:messages.html.twig' %}
+    {% block content %}
+    {% endblock %}
+    <script>
+        $(function() {
+            $(".close-content").click(function(event) {
+               create(event); 
+            });
+        });
+        {% block script %}
+        {% endblock %}
+    </script>
+</div>

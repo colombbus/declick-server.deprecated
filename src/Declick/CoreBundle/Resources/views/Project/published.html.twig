@@ -1,4 +1,9 @@
-<div class="container">
-    <h2>{{'project.published_projects'|trans}}</h2>
+{% extends 'DeclickCoreBundle:Main:content.html.twig' %}
+
+{% block title %}
+    {{'project.published_projects'|trans}}    
+{% endblock %}
+
+{% block content %}
     {% include "DeclickCoreBundle:Paginated:main.html.twig" %}
-</div>
+{% endblock %}

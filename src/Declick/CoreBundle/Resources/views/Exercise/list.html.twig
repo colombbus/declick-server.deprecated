@@ -1,5 +1,10 @@
-<div class="container">
-    <h2>{{'exercise.exercises'|trans}}</h2>
+{% extends 'DeclickCoreBundle:Main:content.html.twig' %}
+
+{% block title %}
+    {{'exercise.exercises'|trans}}
+{% endblock %}
+
+{% block content %}
     <h3>{{'exercise.own_exercises'|trans}}</h3>
     <div class="list-group">
         {% for exercise in exercises %}
@@ -23,4 +28,4 @@
     <a href="{{ path('declick_admin_exercises') }}" class="btn btn-default content-link" data-active="profile">
         {{'exercise.see_all_exercises'|trans }} 
     </a>
-</div>
+{% endblock %}

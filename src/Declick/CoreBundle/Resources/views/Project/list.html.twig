@@ -1,5 +1,10 @@
-<div class="container">
-    <h2>{{'project.projects'|trans}}</h2>
+{% extends 'DeclickCoreBundle:Main:content.html.twig' %}
+
+{% block title %}
+    {{'project.projects'|trans}}
+{% endblock %}
+
+{% block content %}
     <h3>{{'project.own_projects'|trans}}</h3>
     <div class="list-group">
         {% for project in ownProjects %}
@@ -42,8 +47,7 @@
          </a>
      {% endfor %}
     </div>
-       
     <br>
     <h3>{{'project.published_projects'|trans}}</h3>
     <a class="btn btn-default content-link" href="{{path('declick_project_published')}}" role="button" data-active="discover" data-title="{{'project.published_projects'|trans}}">{{'project.see_published_projects'|trans}}</a>
-</div>
+{% endblock %}

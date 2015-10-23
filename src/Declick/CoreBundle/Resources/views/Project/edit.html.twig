@@ -1,8 +1,14 @@
+{% extends 'DeclickCoreBundle:Main:content.html.twig' %}
 {% form_theme form 'DeclickCoreBundle:Form:fields.html.twig' %}
-<div class="container">
+
+
+{% block title %}
+    {{title|trans}}
+{% endblock %}
+
+{% block content %}
     <div class="row">
         <div class="col-md-12">
-            <h2>{{title|trans}}</h2>
             <form action="" method="post" name="project" class="content-form">
                 {{ form_row(form.name) }}
                 {{ form_row(form.published) }}
@@ -19,11 +25,12 @@
             {{ form_end(form) }}
         </div>
     </div>
-</div> 
-<script>
+{% endblock %}
+
+{% block script %}
     $(function(){
         $('#project_cancel').click(function(e){
             window.history.back();
         });
     });
-</script>
+{% endblock %}    

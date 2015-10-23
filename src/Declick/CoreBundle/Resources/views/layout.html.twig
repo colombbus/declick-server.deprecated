@@ -6,10 +6,9 @@
     {% include 'DeclickCoreBundle:Main:javascript.html.twig' %}
 {% endblock %}
 {% block body %}
-    {% block navbar %}
-        {% include 'DeclickCoreBundle:Main:navbar.html.twig' %}
+    {% block menu %}
+        {% include "DeclickCoreBundle:User:menu.html.twig" %}
     {% endblock %}
-
     {% block content %}
         {% if contentTemplate %}
         <div id="content">
@@ -21,7 +20,7 @@
         {% endif %}
     {% endblock %}
     {# added 'onmousewheel="" to solve a bug in safari (see http://kb.tableausoftware.com/articles/issue/scroll-bars-in-embedded-views-do-not-work-in-safari) #}
-    <iframe id="help-frame" src="{{ declickTutorial }}" frameborder="0" onmousewheel=""></iframe>
-    <iframe id="local-frame" src="{{ declickCreate }}" frameborder="0" scrolling="no" onmousewheel=""></iframe>
+    <iframe id="help-frame" src="{{ tutorial }}" frameborder="0" onmousewheel=""></iframe>
+    <iframe id="local-frame" src="{{ client }}" frameborder="0" scrolling="no" onmousewheel=""></iframe>
 
 {% endblock %}

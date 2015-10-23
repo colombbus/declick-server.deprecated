@@ -1,5 +1,10 @@
-<div class="container">
-    <h1>{{'admin.title'|trans }}</h1>
+{% extends 'DeclickCoreBundle:Main:content.html.twig' %}
+
+{% block title %}
+    {{'admin.title'|trans }}
+{% endblock %}
+
+{% block content %}
     <div class="row">
         <div class="col-md-3">
             {% set active = 'users' %}
@@ -9,4 +14,4 @@
             {% include "DeclickCoreBundle:Paginated:main.html.twig" %}
         </div>
     </div>
-</div>
+{% endblock %}

@@ -3,6 +3,7 @@ namespace Declick\CoreBundle\Helper;
 
 use Namshi\JOSE\JWS;
 use DateTime;
+use Exception;
 
 class TokenParser
 {
@@ -27,7 +28,7 @@ class TokenParser
       $datetime->modify('+1 day');
       $tomorrow = $datetime->format('d-m-Y');
       if (!isset($params['date'])) {
-         if (!$params) {
+         if (!isset($params)) {
             throw new Exception('Token cannot be decrypted, please check your SSL keys');
          }
          else {

@@ -39,9 +39,8 @@ class DeclickController extends Controller {
             }
         } else {
             $baseUrl = $this->getRequest()->getSchemeAndHttpHost()."/";
-            $declickLearn = $baseUrl.$this->container->getParameter('declick_core.settings.directory.client')."/learn.html";
-            $declickCreate = $baseUrl.$this->container->getParameter('declick_core.settings.directory.client')."/index.html";
-            $declickTutorial = $baseUrl.$this->container->getParameter('declick_core.settings.directory.tutorial');
+            $client = $baseUrl.$this->container->getParameter('declick_core.settings.directory.client')."/index.html";
+            $tutorial = $baseUrl.$this->container->getParameter('declick_core.settings.directory.tutorial');
 
             if ($contentTemplate) {
                 $contentUrl =  $request->getUri();
@@ -51,9 +50,8 @@ class DeclickController extends Controller {
             $parameters = array_merge($parameters, array('contentTemplate' => $contentTemplate,
                         'active' => $active,
                         'contentUrl' => $contentUrl,
-                        'declickCreate' => $declickCreate,
-                        'declickLearn' => $declickLearn,
-                        'declickTutorial' => $declickTutorial,
+                        'client' => $client,
+                        'tutorial' => $tutorial,
                         'learn' => $learn,
                         'current_project' => $this->getProject()));
             return $this->render("DeclickCoreBundle::layout.html.twig", $parameters);

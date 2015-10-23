@@ -30,7 +30,7 @@ body {
     z-index:1;
     width:100%;
     border:none;
-    padding:0 0 0 0;
+    padding:40px 0 0 0;
     margin:0;
     box-sizing:border-box;
     height:100%;
@@ -40,7 +40,7 @@ body {
 
 #content {
     box-sizing:border-box;
-    padding:120px 0 0 0;
+    padding:40px 0 0 0;
     height:100%;
     width:100%;
     position:absolute;
@@ -54,13 +54,26 @@ body {
     background-position:50% 50%;
 }
 
+#content .pull-right {
+    margin-right:5px;
+}
+
+.close-content {
+    float:right;
+    background-image:url(../img/close.png);
+    background-repeat:no-repeat;
+    background-position:right top;
+    height:26px;
+    width:26px;
+    margin-top:5px;
+    cursor:pointer;
+}
+
 #navbar-declick {
-    display:none;
-    background-color:#FFFFFF;
-    height:120px;
-    min-height:120px;
-    text-align:center;
-    background-image:url(../img/back_top.png);
+    background-color:#dfdfdf;
+    min-height:40px;
+    height:40px;
+    line-height:40px;
 }
 
 #navbar-declick .navbar-brand {
@@ -116,12 +129,6 @@ body {
         text-align: center;
     }
 
-    #navigation-menu, #user-menu {
-        margin-top:80px;
-        height:40px;
-        line-height:40px;
-    }
-    
     #user-menu {
         margin-right:15px;
         position:relative;
@@ -138,8 +145,6 @@ body {
 
     #user-menu > li {
         display:inline-block;
-        line-height:40px;
-        height:40px;
         float:none;
     }
 

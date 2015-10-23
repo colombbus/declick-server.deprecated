@@ -57,7 +57,7 @@ function loadContent(url) {
 
 function fetchContent(url, data, title) {
     if (typeof data !== 'undefined') {
-        historyData = {data:data, url:url};
+        var historyData = {data:data, url:url};
         if (typeof data.content === 'undefined') {
             historyData.data.content = url;
         }
@@ -69,25 +69,21 @@ function fetchContent(url, data, title) {
     loadContent(url);
 }
 
-function setActive(elementName) {
-    $("#navigation-menu > li").removeClass("active").find("a").blur();
+function removeActive() {
     $("#user-menu > li").removeClass("active").find("a").blur();
+}
+
+function setActive(elementName) {
+    removeActive();
     $("#"+elementName).addClass("active");
     active_nav = elementName;
 }
 
 function create(event) {
     event.preventDefault();
-    setActive("create");
+    removeActive();
     closeContent();
     recordHistory({url:url_create, data:{active:'create'}});
-}
-
-function info(event) {
-    event.preventDefault();
-    setActive("info");
-    openContent();
-    fetchContent(url_info, {active:'info'});
 }
 
 function login(event) {
@@ -212,14 +208,6 @@ window.onpopstate = function(event) {
 };
 
 $(function() {
-    // bind menu links
-    $("#logo").click(create);
-    $("#create a").click(create);
-    $("#info a").click(info);
-    // bind login form
-    $("#login-form").submit(login);
-    // bind logout link
-    $("#logout-link").click(logout);
     // ajaxify links and forms
     ajaxify();
     // hide content if requested
@@ -235,7 +223,6 @@ $(function() {
     if (content_url)
         data.content = content_url;
     window.history.replaceState(data, 'Declick', document.URL);
-    
 });
 
 

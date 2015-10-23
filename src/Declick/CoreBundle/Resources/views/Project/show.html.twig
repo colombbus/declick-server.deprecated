@@ -1,3 +1,5 @@
+{% extends 'DeclickCoreBundle:Main:content.html.twig' %}
+
 {% set public = project.getPublished()%}
 {% if project.getName() is empty %}
     {% set projectName =  'project.default_name' | trans %}
@@ -5,9 +7,16 @@
     {% set projectName = project.getName() %}
 {% endif %}
 
-<div class="container">
-    {% include 'DeclickCoreBundle:Main:messages.html.twig' %}
-    <h2>{{ 'project.details'|trans }}{{projectName}}
+{% block title %}
+    {{ 'project.details'|trans }}{{projectName}}
+{% endblock %}
+
+{% block content %}
+    {% if public %}
+        <div class='panel panel-primary'>
+    {% else %}
+        <div class='panel panel-default'>
+    {% endif %}
     {% if edition %}
         <div class="pull-right">
         {% if public %}
@@ -16,12 +25,6 @@
             <small><span class="label label-default">{{'project.private'|trans}}</span></small>
         {% endif %}
         </div>
-    {% endif %}
-    </h2>
-    {% if public %}
-        <div class='panel panel-primary'>
-    {% else %}
-        <div class='panel panel-default'>
     {% endif %}
         <table class="data-display">
             <tr>
@@ -137,9 +140,10 @@
     <a class="btn btn-default content-link" data-active='create' href="{{ path( "declick_project_select", {'projectId':project.getId()}) }}" >{{ 'project.select'|trans }}</a>
 {% endif %}
     <a class="btn btn-default" href="{{ path( "declick_project_execute", {'projectId':project.getId()}) }}" target="declick_execution">{{ 'project.execute'|trans }}</a>
-</div>
+{% endblock %}
+
 {% if updateUserMenu is defined %}
-    <script>
+    {% block script %}
         updateUserMenu(false, false, false);
-    </script>
+    {% endblock %}
 {% endif %}

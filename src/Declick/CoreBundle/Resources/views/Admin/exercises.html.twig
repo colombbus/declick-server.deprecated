@@ -1,6 +1,10 @@
-<div class="container">
-    {% include 'DeclickCoreBundle:Main:messages.html.twig' %}
-    <h1>{{'admin.title'|trans }}</h1>
+{% extends 'DeclickCoreBundle:Main:content.html.twig' %}
+
+{% block title %}
+    {{'admin.title'|trans }}
+{% endblock %}
+
+{% block content %}
     <div class="row">
         <div class="col-md-3">
             {% set active = 'exercises' %}
@@ -13,11 +17,13 @@
             </a>        
         </div>
     </div>
-</div>
+{% endblock %}
+                    
 {% if updateUserMenu %}
-<script>
-    $(function() {
-        updateUserMenu(false, true, false);
-    });
-</script>
+    {% block script %}
+        $(function() {
+            updateUserMenu(false, true, false);
+        });
+    {% endblock %}
 {% endif %}
+
