@@ -124,6 +124,7 @@ parameters:
             - "video/ogg"
     declick_core.settings.resource_max_size: 5000000
     declick_core.settings.step_programs:
+            - "init"
             - "start"
             - "check"
             - "solution"
