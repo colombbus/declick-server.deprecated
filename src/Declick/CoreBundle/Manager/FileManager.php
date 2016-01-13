@@ -116,9 +116,12 @@ class FileManager extends BaseManager {
     }
     
     // may throw FileNotFoundException or IOException
-    public function copyFile(File $source, File $copy, $projectPath) {
-        $sourceStorageName = $projectPath . "/". $this->getFilePath($source);
-        $copyStorageName = $projectPath . "/". $this->getFilePath($copy);
+    public function copyFile(File $source, File $copy, $sourceProjectPath, $copyProjectPath = false) {
+        if ($copyProjectPath === false) {
+            $copyProjectPath = $sourceProjectPath;
+        }
+        $sourceStorageName = $sourceProjectPath . "/". $this->getFilePath($source);
+        $copyStorageName = $copyProjectPath . "/". $this->getFilePath($copy);
         $fs = new Filesystem();
         if ($source->getProgram()) {
             // File is a program
@@ -126,11 +129,17 @@ class FileManager extends BaseManager {
             $sourceStatementsPath = $sourceStorageName."_statements";
             $copyCodePath = $copyStorageName."_code";
             $copyStatementsPath = $copyStorageName."_statements";
-            $fs->copy($sourceCodePath, $copyCodePath);
-            $fs->copy($sourceStatementsPath, $copyStatementsPath);
+            if ($fs->exists($sourceCodePath)) {
+                $fs->copy($sourceCodePath, $copyCodePath);
+            }
+            if ($fs->exists($sourceStatementsPath)) {
+                $fs->copy($sourceStatementsPath, $copyStatementsPath);
+            }
         } else {
             // File is a resource
-            $fs->copy($sourceStorageName, $copyStorageName);
+            if ($fs->exists($sourceStorageName)) {
+                $fs->copy($sourceStorageName, $copyStorageName);
+            }
         }
     }
     
