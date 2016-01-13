@@ -114,6 +114,26 @@ class FileManager extends BaseManager {
             }
         }
     }
+    
+    // may throw FileNotFoundException or IOException
+    public function copyFile(File $source, File $copy, $projectPath) {
+        $sourceStorageName = $projectPath . "/". $this->getFilePath($source);
+        $copyStorageName = $projectPath . "/". $this->getFilePath($copy);
+        $fs = new Filesystem();
+        if ($source->getProgram()) {
+            // File is a program
+            $sourceCodePath = $sourceStorageName."_code";
+            $sourceStatementsPath = $sourceStorageName."_statements";
+            $copyCodePath = $copyStorageName."_code";
+            $copyStatementsPath = $copyStorageName."_statements";
+            $fs->copy($sourceCodePath, $copyCodePath);
+            $fs->copy($sourceStatementsPath, $copyStatementsPath);
+        } else {
+            // File is a resource
+            $fs->copy($sourceStorageName, $copyStorageName);
+        }
+    }
+    
 
     public function updateProgram(File $program, $projectPath, $code, $statements) {
         // find corresponding project

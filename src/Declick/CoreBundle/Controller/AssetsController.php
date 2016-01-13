@@ -683,18 +683,15 @@ class AssetsController extends Controller {
         $copy->setType($resource->getType());
         $fileManager = $this->get('declick_core.file_manager');
         $fileManager->saveFile($copy);
-        
-        // Copy file
-        $originalPath = $env->projectPath . "/".$fileManager->getFilePath($resource);
-        $copyPath = $env->projectPath . "/".$fileManager->getFilePath($copy);;
-        $fs = new Filesystem();
         try {
-            $fs->copy($originalPath, $copyPath);
+            $fileManager->copyFile($resource, $copy, $env->projectPath);
         } catch (FileNotFoundException $ex) {
             return $jsonResponse->setData(array('error' => 'file_not_found'));
         }  catch (IOException $ex) {
             return $jsonResponse->setData(array('error' => 'io_error'));
         }
+
+        
         return $jsonResponse->setData(array('created' => $newName, 'data'=> array('type'=> $copy->getType(), 'extension'=>$extension, 'base-name'=>$newBaseName, 'version'=>$copy->getVersion())));
     }
     
