@@ -9,3 +9,7 @@ declick_core_info:
 declick_core_create:
     path:  /create
     defaults: { _controller: DeclickCoreBundle:Main:create}
+
+declick_core_import:
+    path:  /import/{token}/{projectId}
+    defaults: { _controller: DeclickCoreBundle:Main:import}
