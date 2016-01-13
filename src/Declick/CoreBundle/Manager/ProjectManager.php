@@ -298,4 +298,28 @@ class ProjectManager extends BaseManager {
         return $project->getExercise();
     }
 
+    public function importProjectFiles(Project $baseProject, Project $newProject) {
+        $programs = $this->getAllPrograms($baseProject);
+        $resources = $this->getAllResources($baseProject);
+        foreach ($programs as $program) {
+            $programName = $program->getName();
+            $file = $this->createFile($newProject, $programName, true);
+            if ($file) {
+                $this->fileManager->saveFile($file);
+                $this->fileManager->copyFile($program, $file, $this->getProjectPath($baseProject), $this->getProjectPath($newProject));
+            }
+        }
+        foreach ($resources as $resource) {
+            $resourceName = $resource->getName();
+            // only import if not already there
+            $file = $this->createFile($newProject, $resourceName, false);
+            if ($file) {
+                $file->setBaseName($resource->getBaseName());
+                $file->setExtension($resource->getExtension());
+                $file->setType($resource->getType());                
+                $this->fileManager->saveFile($file);
+                $this->fileManager->copyFile($resource, $file, $this->getProjectPath($baseProject), $this->getProjectPath($newProject));
+            }
+        }
+    }
 }
