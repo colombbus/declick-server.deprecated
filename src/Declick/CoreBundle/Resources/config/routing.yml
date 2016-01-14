@@ -11,5 +11,5 @@ declick_core_create:
     defaults: { _controller: DeclickCoreBundle:Main:create}
 
 declick_core_import:
-    path:  /import/{token}/{projectId}
+    path:  /import/{token}/{projectIds}
     defaults: { _controller: DeclickCoreBundle:Main:import}

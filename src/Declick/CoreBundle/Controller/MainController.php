@@ -70,20 +70,22 @@ class MainController extends DeclickController {
                         $session = $this->get('request')->getSession();
                         if ($session->has('copy-project')) {
                             // projects have to be copied
-                            $projectId = $session->get('copy-project');
+                            $projectIds = $session->get('copy-project');
                             $projectManager = $this->get('declick_core.project_manager');
                             $userProjectId = $session->get('projectid');
                             if (!$userProjectId) {
                                 throw (new Exception("no home id"));
                             }
                             $userProject = $projectManager->loadProject($userProjectId);
-                            // Check if project exists and is public
-                            $project = $projectManager->loadProject($projectId);
-                            if (!$project || !$project->getPublished()) {
-                                throw (new Exception("wrong id"));
+                            foreach ($projectIds as $projectId) {
+                                // Check if project exists and is public
+                                $project = $projectManager->loadProject($projectId);
+                                if (!$project || !$project->getPublished()) {
+                                    throw (new Exception("wrong id"));
+                                }
+                                // Import project files
+                                $projectManager->importProjectFiles($project, $userProject);
                             }
-                            // Import project files
-                            $projectManager->importProjectFiles($project, $userProject);
                         }
                     }
                 } catch (Exception $ex) {
@@ -103,7 +105,7 @@ class MainController extends DeclickController {
     }
     
     //TODO: remove this quick and dirty thing!
-    public function importAction(Request $request, $token, $projectId) {
+    public function importAction(Request $request, $token, $projectIds) {
         $parser = $this->get("declick_core.token_parser");
         try {
             $params = $parser->decodeToken($token);
@@ -134,21 +136,24 @@ class MainController extends DeclickController {
                 $event = new InteractiveLoginEvent($request, $token);
                 $dispatcher->dispatch("security.interactive_login", $event);
                 //$this->get('fos_user.security.login_manager')->logInUser('main', $user);
-                $logged = true;
-                        
-                // check if there is any request to copy projects
                 $session = $this->get('request')->getSession();
-                $session->set('copy-project', $projectId);
+                $ids = json_decode($projectIds);
+                $session->set('copy-project', $ids);
             }
             $response = new Response();
-            $response->setContent("<html><body>imported: ".$projectId."</body></html>");
+            $response->setContent("<html><body>imported</body></html>");
             $response->setStatusCode(Response::HTTP_OK);
             $response->headers->set('Content-Type', 'text/html');
             $response->headers->set('Access-Control-Allow-Origin', '*');
             return $response;
         }
         catch (Exception $ex) {
-        }
+            $response = new Response();
+            $response->setContent("<html><body>error: ".$ex->getMessage()."</body></html>");
+            $response->setStatusCode(Response::HTTP_OK);
+            $response->headers->set('Content-Type', 'text/html');
+            $response->headers->set('Access-Control-Allow-Origin', '*');
+            return $response;        }
     }
     
     
