@@ -88,6 +88,7 @@ class MainController extends DeclickController {
                                 $projectManager->importProjectFiles($project, $userProject);
                             }
                             $showEditor = true;
+                            $session->remove('copy-project');
                         }
                     }
                 } catch (Exception $ex) {
