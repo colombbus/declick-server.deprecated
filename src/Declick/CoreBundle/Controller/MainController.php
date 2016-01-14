@@ -140,9 +140,12 @@ class MainController extends DeclickController {
                 $session = $this->get('request')->getSession();
                 $session->set('copy-project', $projectId);
             }
-            $jsonResponse = new JsonResponse();
-            $jsonResponse->setData(array('imported' => $projectId));
-            return $jsonResponse;
+            $response = new Response();
+            $response->setContent("<html><body>imported: ".$projectId."</body></html>");
+            $response->setStatusCode(Response::HTTP_OK);
+            $response->headers->set('Content-Type', 'text/html');
+            $response->headers->set('Access-Control-Allow-Origin', '*');
+            return $response;
         }
         catch (Exception $ex) {
         }
