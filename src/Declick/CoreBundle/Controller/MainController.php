@@ -31,6 +31,7 @@ class MainController extends DeclickController {
         } else {
             // Check access
             $logged = false;
+            $showEditor = false;
             $token = $request->query->get("sToken", false);
             if ($token !== false) {
                 $parser = $this->get("declick_core.token_parser");
@@ -86,6 +87,7 @@ class MainController extends DeclickController {
                                 // Import project files
                                 $projectManager->importProjectFiles($project, $userProject);
                             }
+                            $showEditor = true;
                         }
                     }
                 } catch (Exception $ex) {
@@ -100,7 +102,7 @@ class MainController extends DeclickController {
                 $this->get('request')->getSession()->invalidate();
             }
             // direct access
-            return $this->renderContent(false, 'create');
+            return $this->renderContent(false, 'create', array('showEditor'=>$showEditor));
         }
     }
     
