@@ -22,5 +22,17 @@
     {# added 'onmousewheel="" to solve a bug in safari (see http://kb.tableausoftware.com/articles/issue/scroll-bars-in-embedded-views-do-not-work-in-safari) #}
     <iframe id="help-frame" src="{{ tutorial }}" frameborder="0" onmousewheel=""></iframe>
     <iframe id="local-frame" src="{{ client }}" frameborder="0" scrolling="no" onmousewheel=""></iframe>
-
+{% if showEditor %}
+<script>
+    $(function() {
+        addLocalInitCallback(function() {
+            updateLocal(true);
+        });
+    });
+    /*window.addInitCallback
+    $(function() {
+        updateLocal(true);
+    });*/
+</script>
+{% endif %}
 {% endblock %}
