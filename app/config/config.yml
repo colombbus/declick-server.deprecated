@@ -23,6 +23,8 @@ framework:
         handler_id:  ~
         cookie_lifetime: 0
         gc_maxlifetime: 7200
+        # only required for "import" controller
+        cookie_httponly: false
     fragments:       ~
     http_method_override: true
     translator: { fallback: fr }
