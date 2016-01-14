@@ -2,6 +2,22 @@ function updateLocal(showEditor) {
     document.getElementById('local-frame').contentWindow.updateEnvironment(showEditor);
 }
 
+var localInitCallbacks = [];
+
+function addLocalInitCallback(cb) {
+    localInitCallbacks.push(cb);
+}
+
+function receiveMessage(event) {
+    if(event.data === 'init') {
+        for (var i=0; i<localInitCallbacks.length; i++) {
+            localInitCallbacks[i].call(window);
+        }
+    }
+}
+
+window.addEventListener('message', receiveMessage, false);
+
 function checkLocalUnsaved(message) {
     if (document.getElementById('local-frame').contentWindow.isUnsaved()) {
         return window.confirm(message);
