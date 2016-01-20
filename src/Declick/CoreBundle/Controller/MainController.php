@@ -154,7 +154,8 @@ class MainController extends DeclickController {
             $response->setContent("<html><body>imported</body></html>");
             $response->setStatusCode(Response::HTTP_OK);
             $response->headers->set('Content-Type', 'text/html');
-            $response->headers->set('Access-Control-Allow-Origin', '*');
+            $response->headers->set('Access-Control-Allow-Origin', 'http://pages.declick.org');
+            $response->headers->set('Access-Control-Allow-Credentials', 'true');
             return $response;
         }
         catch (Exception $ex) {
@@ -162,7 +163,8 @@ class MainController extends DeclickController {
             $response->setContent("<html><body>error: ".$ex->getMessage()."</body></html>");
             $response->setStatusCode(Response::HTTP_OK);
             $response->headers->set('Content-Type', 'text/html');
-            $response->headers->set('Access-Control-Allow-Origin', '*');
+            $response->headers->set('Access-Control-Allow-Origin', 'http://pages.declick.org');
+            $response->headers->set('Access-Control-Allow-Credentials', 'true');
             return $response;        
         }
     }
