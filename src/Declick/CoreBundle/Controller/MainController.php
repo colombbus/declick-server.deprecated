@@ -58,13 +58,17 @@ class MainController extends DeclickController {
                             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, new Response()));
 
                         } 
-                        // user has an account: log in
-                        
-                        $token = new UsernamePasswordToken($user, $user->getPassword(), "main", $user->getRoles());
-                        $this->get('security.token_storage')->setToken($token);
-                        $event = new InteractiveLoginEvent($request, $token);
-                        $dispatcher->dispatch("security.interactive_login", $event);
-                        //$this->get('fos_user.security.login_manager')->logInUser('main', $user);
+                        // user has an account: check if already logged in
+                        $currentUser  = $this->get('security.token_storage')->getToken()->getUser();
+                        if (!is_object($currentUser) || $currentUser->getId() !== $user->getId()) {
+                            // not logged in: log user in
+                            $token = new UsernamePasswordToken($user, $user->getPassword(), "main", $user->getRoles());
+                            $this->get('security.token_storage')->setToken($token);
+                            $event = new InteractiveLoginEvent($request, $token);
+                            $dispatcher->dispatch("security.interactive_login", $event);
+                            //$this->get('fos_user.security.login_manager')->logInUser('main', $user);
+                            
+                        }
                         $logged = true;
                         
                         // check if there is any request to copy projects
@@ -132,13 +136,16 @@ class MainController extends DeclickController {
                     $em->flush();
                     $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, new Response()));
                 } 
-                // user has an account: log in
-                        
-                $token = new UsernamePasswordToken($user, $user->getPassword(), "main", $user->getRoles());
-                $this->get('security.token_storage')->setToken($token);
-                $event = new InteractiveLoginEvent($request, $token);
-                $dispatcher->dispatch("security.interactive_login", $event);
-                //$this->get('fos_user.security.login_manager')->logInUser('main', $user);
+                // user has an account: check if already logged in
+                $currentUser  = $this->get('security.token_storage')->getToken()->getUser();
+                if (!is_object($currentUser) || ($currentUser->getId() !== $user->getId())) {
+                    // not logged in: log user in
+                    $token = new UsernamePasswordToken($user, $user->getPassword(), "main", $user->getRoles());
+                    $this->get('security.token_storage')->setToken($token);
+                    $event = new InteractiveLoginEvent($request, $token);
+                    $dispatcher->dispatch("security.interactive_login", $event);
+                    //$this->get('fos_user.security.login_manager')->logInUser('main', $user);
+                }
                 $session = $this->get('request')->getSession();
                 $ids = json_decode($projectIds);
                 $session->set('copy-project', $ids);
@@ -156,7 +163,8 @@ class MainController extends DeclickController {
             $response->setStatusCode(Response::HTTP_OK);
             $response->headers->set('Content-Type', 'text/html');
             $response->headers->set('Access-Control-Allow-Origin', '*');
-            return $response;        }
+            return $response;        
+        }
     }
     
     
