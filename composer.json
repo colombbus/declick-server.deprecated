@@ -9,7 +9,6 @@
         }
     },
     "keywords": ["colombbus", "symfony", "educational IDE", "learn programming", "bundle", "declick", "declick-client"],
-    "license": "MIT",
     "authors": [
         {
             "name": "Régis Leloup",
