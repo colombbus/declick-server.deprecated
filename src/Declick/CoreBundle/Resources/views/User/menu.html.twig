@@ -1,3 +1,23 @@
+<div class="navbar navbar-fixed-top" id="navbar-declick" role="navigation">
+    <ul class="nav navbar-nav navbar-left" id="menu">
+        <li id="project" class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="project-dropdown-trigger">
+                <img src="{{ asset('bundles/declickcore/img/menu.png') }}">
+<!--                <span class="caret"></span>-->
+            </a>
+            {% if current_project is defined %}
+                {% if current_project.getName() is defined %}
+                    <div class="name">
+                    {% if current_project.getName() is empty %}
+                        {{ 'project.default_name' | trans }}
+                    {% else %}
+                        {{ current_project.getName() }}
+                    {% endif %}
+                    </div>
+                {% endif %}
+            {% endif %}
+
+            <ul class="dropdown-menu dropdown-menu-left" id="project-dropdown" role="menu">
 {% if  app.user is not null %}
     {% if is_granted('ROLE_USER') %}
         {% include "DeclickCoreBundle:User:logged.html.twig" %}
@@ -7,3 +27,13 @@
 {% else %}
     {% include "DeclickCoreBundle:User:anonymous.html.twig" %}
 {% endif %}
+            </ul>
+        </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right" id="switch">
+        <li>
+            <button id="switch_editor" class="switch_button">
+            <button id="switch_view" class="switch_button">
+        </li>
+    </ul>
+</div>

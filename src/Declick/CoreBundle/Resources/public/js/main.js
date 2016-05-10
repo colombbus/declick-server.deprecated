@@ -206,6 +206,18 @@ function ajaxify(element) {
     }
 }
 
+function displayEditor() {
+    $("#switch_editor").hide();
+    $("#switch_view").show();
+    document.getElementById('local-frame').contentWindow.displayEditor();
+}
+
+function displayView() {
+    $("#switch_view").hide();
+    $("#switch_editor").show();
+    document.getElementById('local-frame').contentWindow.displayView();
+}
+
 window.onpopstate = function(event) {
     var state = event.state;
     if (state) {
@@ -239,6 +251,8 @@ $(function() {
     if (content_url)
         data.content = content_url;
     window.history.replaceState(data, 'Declick', document.URL);
+    $("#switch_editor").click(displayEditor);
+    $("#switch_view").click(displayView);
 });
 
 

@@ -1,53 +1,30 @@
-<div class="navbar navbar-fixed-top" id="navbar-declick" role="navigation">
-    
-    <ul class="nav navbar-nav navbar-left" id="user-menu">
-        <li id="project" class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="project-dropdown-trigger">
-                <span class="glyphicon glyphicon-folder-open"></span>
-                {% if current_project is defined %}
-                    {% if current_project.getName() is defined %}
-                        {% if current_project.getName() is empty %}
-                            {{ 'project.default_name' | trans }}
-                        {% else %}
-                            {{ current_project.getName() }}
-                        {% endif %}
-                    {% endif %}
-                {% endif %}
-                <span class="caret"></span>
-            </a>
-    
-            <ul class="dropdown-menu dropdown-menu-left" id="project-dropdown" role="menu">
-                    <li>
-                        <a href="#" class="content-link" data-active="project" data-title="project">
-                            test
-                        </a>
-                    </li>
-                {% if current_project is defined %}
-                    <li>
-                        <a href="{{ path('declick_project_show') }}" class="content-link" data-active="project" data-title="project">
-                            {{'navbar.project_info'|trans }} 
-                        </a>
-                    </li>
+<li>
+    <a href="#" class="content-link" data-active="project" data-title="project">
+        test
+    </a>
+</li>
+{% if current_project is defined %}
+<li>
+    <a href="{{ path('declick_project_show') }}" class="content-link" data-active="project" data-title="project">
+        {{'navbar.project_info'|trans }} 
+    </a>
+</li>
 
-                    <li>
-                        <a href="{{ path('declick_project_list') }}" class="content-link" data-active="project" data-title="project">
-                            {{'navbar.projects'|trans }} 
-                        </a>
-                    </li>
-                {% endif %}
-                {% if is_granted('ROLE_ADMIN') %}
-                    <li>
-                        <a href="{{ path('declick_exercise_list') }}" class="content-link" data-active="project">
-                            {{ 'navbar.exercises'|trans }}
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ path('declick_admin_index') }}" class="content-link" data-active="profile">
-                            {{ 'navbar.admin'|trans }}
-                        </a>
-                    </li>
-                {% endif %}
-            </ul>
-        </li>
-    </ul>
-</div>
+<li>
+    <a href="{{ path('declick_project_list') }}" class="content-link" data-active="project" data-title="project">
+        {{'navbar.projects'|trans }} 
+    </a>
+</li>
+{% endif %}
+{% if is_granted('ROLE_ADMIN') %}
+<li>
+    <a href="{{ path('declick_exercise_list') }}" class="content-link" data-active="project">
+        {{ 'navbar.exercises'|trans }}
+    </a>
+</li>
+<li>
+    <a href="{{ path('declick_admin_index') }}" class="content-link" data-active="profile">
+        {{ 'navbar.admin'|trans }}
+    </a>
+</li>
+{% endif %}
