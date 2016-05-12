@@ -206,15 +206,23 @@ function ajaxify(element) {
     }
 }
 
-function displayEditor() {
+function switchEditor() {
     $("#switch_editor").hide();
     $("#switch_view").show();
+}
+
+function switchView() {
+    $("#switch_view").hide();
+    $("#switch_editor").show();
+}
+
+function displayEditor() {
+    switchEditor();
     document.getElementById('local-frame').contentWindow.displayEditor();
 }
 
 function displayView() {
-    $("#switch_view").hide();
-    $("#switch_editor").show();
+    switchView();
     document.getElementById('local-frame').contentWindow.displayView();
 }
 
@@ -253,6 +261,14 @@ $(function() {
     window.history.replaceState(data, 'Declick', document.URL);
     $("#switch_editor").click(displayEditor);
     $("#switch_view").click(displayView);
+    
+    // close dropdown menu when iframe clicked
+    $(window).blur(function() {
+        var menu = $("#menu");
+        if (menu.hasClass("open")) {
+            menu.removeClass("open");
+        }
+    });
 });
 
 

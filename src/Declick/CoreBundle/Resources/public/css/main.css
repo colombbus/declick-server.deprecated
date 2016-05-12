@@ -90,17 +90,16 @@ body {
     margin-top: 4px;
 }
 
+#menu-dropdown-trigger {
+    display:inline-block;
+    vertical-align:middle;
+}
+
+#menu-dropdown-trigger:hover, #menu-dropdown-trigger:focus {
+    text-decoration: none;
+}
+
 @media (min-width: 768px) {
-    #main-menu .navbar-nav {
-        display: inline-block;
-        float: none;
-        vertical-align: top;
-    }
-
-    #main-menu {
-        text-align: center;
-    }
-
     #menu {
         position:relative;
         line-height:50px;
@@ -112,24 +111,8 @@ body {
         font-weight:700;
         display:inline-block;
         height:50px;
-        line-height:50px;        
-    }
-    
-    #menu > li {
-        display:inline-block;
-        float:none;
-    }
-
-    #menu > li > a {
-        padding:0;
+        line-height:50px;
         vertical-align:middle;
-        display:inline-block;
-        line-height:normal;
-        background-color:transparent;
-    }
-
-    #project {
-        margin-right:30px;
     }
     
     #menu .dropdown-menu {
@@ -165,6 +148,7 @@ body {
     background-color:transparent;
     border:none;
     cursor: pointer;
+    vertical-align:middle;
 }
 
 #switch_editor {

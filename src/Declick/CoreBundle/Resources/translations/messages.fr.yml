@@ -15,6 +15,7 @@ navbar.project_info: Informations
 navbar.exercises: Exercices
 navbar.forgotten_password: 'Mot de passe oublié ?'
 navbar.info: Informations
+navbar.not_logged: Connectez-vous pour accéder au menu
 homepage.Welcome: 'Bienvenue sur le site de Declick'
 homepage.site_description: 'Le site officiel de Declick fonctionnant sur Android, PC (Win/Linux/Mac), iPhone, FirefoxOS, BlackBerry.'
 homepage.more: Plus

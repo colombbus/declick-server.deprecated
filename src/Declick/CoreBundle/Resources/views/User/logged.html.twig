@@ -1,15 +1,10 @@
-<li>
-    <a href="#" class="content-link" data-active="project" data-title="project">
-        test
-    </a>
-</li>
 {% if current_project is defined %}
 <li>
     <a href="{{ path('declick_project_show') }}" class="content-link" data-active="project" data-title="project">
         {{'navbar.project_info'|trans }} 
     </a>
 </li>
-
+<li role="separator" class="divider"></li>
 <li>
     <a href="{{ path('declick_project_list') }}" class="content-link" data-active="project" data-title="project">
         {{'navbar.projects'|trans }} 
@@ -17,6 +12,7 @@
 </li>
 {% endif %}
 {% if is_granted('ROLE_ADMIN') %}
+<li role="separator" class="divider"></li>
 <li>
     <a href="{{ path('declick_exercise_list') }}" class="content-link" data-active="project">
         {{ 'navbar.exercises'|trans }}
