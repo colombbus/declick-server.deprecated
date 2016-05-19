@@ -26,17 +26,19 @@ function checkLocalUnsaved(message) {
 }
 
 function updateUserMenu(showLoading, local, showEditor) {
-    if (typeof showLoading === 'undefined' || showLoading) {
+    /*if (typeof showLoading === 'undefined' || showLoading) {
         $("#user-dropdown-trigger").addClass("loading");
     }
     var $element = $("#user-menu");
     $element.load(url_user_menu, function() {
         $("#logout-link").click(logout);
-        ajaxify($element);
-        if (local) {
-            updateLocal(showEditor);
-        }
-    });
+        ajaxify($element);*/
+    // quick fix
+    // TODO: rearrange this
+    if (local) {
+        updateLocal(showEditor);
+    }
+    //});
 }
 
 function openContent() {

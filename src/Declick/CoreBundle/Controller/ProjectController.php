@@ -216,6 +216,7 @@ class ProjectController extends DeclickController {
             // update required:
             $session->set('projectid', $projectId);
             $params['updateUserMenu'] = true;
+            $params['newName'] = $project->getName();
         }
         return $this->renderContent('DeclickCoreBundle:Project:select.html.twig', 'create', $params);
     }

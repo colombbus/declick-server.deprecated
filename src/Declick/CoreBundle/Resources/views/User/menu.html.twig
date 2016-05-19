@@ -6,7 +6,7 @@
         </a>
         {% if current_project is defined %}
             {% if current_project.getName() is defined %}
-                <div class="name">
+                <div class="name" id="project-name">
                 {% if current_project.getName() is empty %}
                     {{ 'project.default_name' | trans }}
                 {% else %}
