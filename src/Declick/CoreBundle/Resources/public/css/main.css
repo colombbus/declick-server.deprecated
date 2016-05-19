@@ -153,6 +153,7 @@ body {
 
 #switch_editor {
     background-image:url('../img/editor.png');
+    display:none;
 }
 
 #switch_editor:hover {
@@ -161,7 +162,6 @@ body {
 
 #switch_view {
     background-image:url('../img/view.png');
-    display:none;
 }
 
 #switch_view:hover {
