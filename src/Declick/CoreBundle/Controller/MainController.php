@@ -32,10 +32,15 @@ class MainController extends DeclickController {
             // Check access
             $logged = false;
             $showEditor = false;
+            $session = $request->getSession();
             $token = $request->query->get("sToken", false);
+            if ($token === false) {
+                $token = $session->get("sToken", false);
+            }
             if ($token !== false) {
                 $parser = $this->get("declick_core.token_parser");
                 try {
+                    $session->set("sToken", $token);
                     $params = $parser->decodeToken($token);
                     $login = $params['sLogin'];
                     //TODO: find a better way to detect unauthentified users
@@ -72,7 +77,6 @@ class MainController extends DeclickController {
                         $logged = true;
                         
                         // check if there is any request to copy projects
-                        $session = $this->get('request')->getSession();
                         if ($session->has('copy-project')) {
                             // projects have to be copied
                             $projectIds = $session->get('copy-project');
@@ -96,9 +100,11 @@ class MainController extends DeclickController {
                         }
                     }
                 } catch (Exception $ex) {
-                    $jsonResponse = new JsonResponse();
+                    $session->remove("sToken");
+                    /*$jsonResponse = new JsonResponse();
                     $jsonResponse->setData(array('error' => $ex->getMessage()));
-                    return $jsonResponse;
+                    return $jsonResponse;*/
+                    $logged = false;
                 }
             }
             if (!$logged) {
