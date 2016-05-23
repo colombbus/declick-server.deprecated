@@ -126,6 +126,7 @@ class ExerciseController extends DeclickController {
             // update required:
             $session->set('projectid', $exerciseId);
             $params['updateUserMenu'] = true;
+            $params['newName'] = $exercise->getName();            
         }
         
         return $this->renderContent('DeclickCoreBundle:Exercise:select.html.twig', 'create', $params);

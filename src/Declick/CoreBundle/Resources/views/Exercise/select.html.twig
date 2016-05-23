@@ -1,5 +1,12 @@
 <script>
     $(function() {
+        {% if newName is defined %}
+            {% if newName is empty %}
+                $("#project-name").text("{{ 'project.default_name' | trans }}");
+            {% else %}
+                $("#project-name").text("{{ newName }}");
+            {% endif %}
+        {% endif %}
     {% if updateUserMenu is defined %}
         updateUserMenu(false, true, true);
     {% endif %}
