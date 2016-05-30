@@ -56,6 +56,7 @@ user.name: "User name"
 user.id: "User id"
 project.id: "Project id"
 project.name: 'Project name'
+project.url: 'Project URL'
 create.date : 'Creation date'
 msg.project: "Only one contributor"
 list.members.project: "Contributors list"

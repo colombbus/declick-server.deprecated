@@ -60,6 +60,14 @@
             </tr>
             <tr>
                 <td class="data-title">
+                    {{ 'project.url'|trans }}
+                </td>
+                <td>
+                    <a href="{{ path( "declick_project_execute", {'projectId':project.getId()}) }}" target="declick_execution"> {{ url( "declick_project_execute", {'projectId':project.getId()}) }}</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="data-title">
                     {{ 'project.launcher'|trans }}
                 </td>
                 <td>

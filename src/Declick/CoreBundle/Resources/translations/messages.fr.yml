@@ -101,6 +101,7 @@ project.own_projects: 'Mes projets'
 project.readonly_projects: 'Projets consultables'
 project.select: 'Travailler sur ce projet'
 project.name: 'Nom du projet'
+project.url: 'Adresse du projet'
 project.creation: 'Nouveau projet'
 message.unsaved: 'Vous avez des programmes non enregistrés : les modifications seront perdues.\nEtes-vous sûr de vouloir poursuivre ?'
 admin.title: Administration
