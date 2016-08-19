@@ -45,14 +45,14 @@ function openContent() {
     var $content = $("#content");
     $content.show();
     $content.stop().animate({top:"0px"}, 600,function(){$('#local-frame').hide();});
-    hideHelp();
+    hideWiki();
 }
 
 function closeContent() {
     var $content = $("#content");
     var height = $content[0].scrollHeight;
     $('#local-frame').show();
-    showHelp();
+    showWiki();
     $content.stop().animate({top:-height+"px"}, 600, function(){$(this).hide();});
 }
 
