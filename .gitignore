@@ -4,6 +4,7 @@
 
 # Bootstrap
 app/bootstrap*
+app/sessions/*
 
 # Symfony directories
 vendor/*

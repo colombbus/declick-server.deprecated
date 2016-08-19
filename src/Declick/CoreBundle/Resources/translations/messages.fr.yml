@@ -65,7 +65,7 @@ profile.resetting_email.subject: 'Réinitialisation de votre mot de passe'
 profile.resetting_email.message: "Bonjour %username% !\n\nPour réinitialiser votre mot de passe, merci de vous rendre sur %confirmationUrl%\n\nA bientôt,\nL'équipe Declick"
 project.details: 'Projet > '
 project.edition: 'Modification du projet'
-project.edit: 'Modifier le projet'
+project.edit: 'Modifier les informations'
 project.new: 'Créer un nouveau projet'
 project.created: 'Date de création'
 project.width: 'Largeur de la fenêtre (pixels)'
