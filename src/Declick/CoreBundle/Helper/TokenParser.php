@@ -20,10 +20,11 @@ class TokenParser
     */
    public function decodeToken($encryptedParams)
    {
-      $jws  = JWS::load($encryptedParams);;
-      if ($jws->verify($this->publicKey)) {
+      $jws  = JWS::load($encryptedParams);
+      /*if ($jws->verify($this->publicKey, 'RS512')) {
+          */
           $params = $jws->getPayload();
-      }
+      /*} */
       $datetime = new DateTime();
       $datetime->modify('+1 day');
       $tomorrow = $datetime->format('d-m-Y');
