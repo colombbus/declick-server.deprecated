@@ -17,7 +17,7 @@
     ],
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "2.7.5",
+        "symfony/symfony": "~2.7",
         "doctrine/orm": "~2.2,>=2.2.3",
         "doctrine/doctrine-bundle": "~1.2",
         "twig/extensions": "~1.0",
@@ -33,7 +33,7 @@
         "ckeditor/ckeditor": "4.*",
         "stof/doctrine-extensions-bundle": "~1.1@dev",
         "knplabs/knp-paginator-bundle": "~2.4",
-        "doctrine/migrations": "dev-master",
+        "doctrine/migrations": ">=1.2.2",
         "doctrine/doctrine-migrations-bundle": "dev-master",
         "namshi/jose": "6.0.*"
     },
