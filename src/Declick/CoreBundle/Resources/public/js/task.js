@@ -28,7 +28,7 @@ window.task = {
 			license : "license",
 			minWidth : "auto",
 			fullFeedback : true,
-			autoHeight : false
+			autoHeight : true
 		};
 		callback(metaData);
 
@@ -51,6 +51,6 @@ window.task = {
 	}
 };
 
-$(window).resize(function() {
+/*$(window).resize(function() {
 	platform.updateHeight($("html").outerHeight(true));
-});	
+});*/	
