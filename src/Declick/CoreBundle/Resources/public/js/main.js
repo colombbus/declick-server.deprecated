@@ -8,10 +8,6 @@ function addLocalInitCallback(cb) {
     localInitCallbacks.push(cb);
 }
 
-addLocalInitCallback(function() {
-    platform.initWithTask(task);
-});
-
 function receiveMessage(event) {
     if(event.data === 'init') {
         for (var i=0; i<localInitCallbacks.length; i++) {
