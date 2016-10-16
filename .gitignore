@@ -31,7 +31,6 @@ nbproject/*
 /bin/doctrine.bat
 /bin/doctrine.php.bat
 
-/composer.lock
 /bin/*
 /app/Resources/views/custom_js.html.twig
 /.htaccess
