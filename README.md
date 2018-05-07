@@ -1,6 +1,8 @@
 Declick-server
 ==========
 
+** This project is no longer maintained. Use [declick-server](https://github.com/colombbus/declick-server) instead. **
+
 A Symfony2's Framework web interface for [Declick](https://github.com/colombbus/declick-client)
 
 Declick-server adds support for the Declick-client educational program.
